@@ -1,0 +1,73 @@
+﻿@model UsersDto
+
+<util-form id="form" on-submit="submit(form,btnSubmit)">
+    <util-card>
+        <util-card-header>
+            <util-card-title>
+                编辑用户名
+            </util-card-title>
+        </util-card-header>
+        <util-card-content>
+            <util-divider inset="true" />
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Name"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="NickName"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Email"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="PasswordVersion"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Password"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Description"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-slide-toggle for="IsSystemAdministrator"></util-slide-toggle>
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="CreationTime"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="CreatId"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="LastModifiTime"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="LastModifiId"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+            <util-button id="btnSubmit" type="Submit" color="Primary"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-form>

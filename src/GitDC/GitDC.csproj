@@ -7,6 +7,10 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="AntDeploy.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Ding.Webs" Version="1.0.0-preview-20190802-02" />

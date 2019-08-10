@@ -1,0 +1,32 @@
+﻿@model RepositoriesDto
+<util-layout flex="70%" x-align="Center">
+    <util-card>
+        <util-card-header>
+            <util-icon font-awesome-icon="AddressCardO" style="margin-right: 10px;"></util-icon>
+            
+        </util-card-header>
+        <util-card-content class="form-content form-list-content">
+                <util-layout flex="100%">
+                    <label asp-for="Name"></label>: <util-label for="Name"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Description"></label>: <util-label for="Description"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="CreationDate"></label>: <util-label for="CreationDate"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="IsPrivate"></label>: <util-label for="IsPrivate"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="AllowAnonymousRead"></label>: <util-label for="AllowAnonymousRead"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="AllowAnonymousWrite"></label>: <util-label for="AllowAnonymousWrite"/>
+                </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-layout>

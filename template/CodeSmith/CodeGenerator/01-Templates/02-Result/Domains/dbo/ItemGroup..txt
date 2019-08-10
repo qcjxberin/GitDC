@@ -1,0 +1,5 @@
+﻿<ItemGroup>
+    <Compile Update="Models/Users.*.cs">
+      <DependentUpon>Users.cs</DependentUpon>
+    </Compile>
+</ItemGroup>

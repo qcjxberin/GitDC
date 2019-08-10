@@ -1,0 +1,32 @@
+﻿@model AuthorizationLogDto
+<util-layout flex="70%" x-align="Center">
+    <util-card>
+        <util-card-header>
+            <util-icon font-awesome-icon="AddressCardO" style="margin-right: 10px;"></util-icon>
+            
+        </util-card-header>
+        <util-card-content class="form-content form-list-content">
+                <util-layout flex="100%">
+                    <label asp-for="UserID"></label>: <util-label for="UserID"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="IssueDate"></label>: <util-label for="IssueDate"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Expires"></label>: <util-label for="Expires"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="IssueIp"></label>: <util-label for="IssueIp"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="LastIp"></label>: <util-label for="LastIp"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="IsValid"></label>: <util-label for="IsValid"/>
+                </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-layout>
