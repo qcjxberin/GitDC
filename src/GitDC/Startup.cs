@@ -451,8 +451,8 @@ namespace GitDC
         public void ConfigSwagger(IServiceCollection services)
         {
             services.AddSwaggerGen(options => {
-                options.SwaggerDoc("v1", new Info { Version = "v1", Title = "LiGongBang API", Description = "理工邦管理系统", Contact = new Contact() { Name = "武汉极思灵创", Email = "100538511@qq.com", Url = "http://www.y-s.cc" } });
-                options.SwaggerDoc("v2", new Info { Version = "v2", Title = "LiGongBang API", Description = "理工邦管理系统", Contact = new Contact() { Name = "武汉极思灵创", Email = "100538511@qq.com", Url = "http://www.y-s.cc" } });
+                options.SwaggerDoc("v1", new Info { Version = "v1", Title = "GitDC API", Description = ".Net Core Git Server", Contact = new Contact() { Name = "丁川", Email = "100538511@qq.com", Url = "http://www.y-s.cc" } });
+                options.SwaggerDoc("v2", new Info { Version = "v2", Title = "GitDC API", Description = ".Net Core Git Server", Contact = new Contact() { Name = "丁川", Email = "100538511@qq.com", Url = "http://www.y-s.cc" } });
 
                 options.DocumentFilter<SetVersionInPaths>();
                 options.DocInclusionPredicate((docName, apiDesc) =>
