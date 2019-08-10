@@ -13,8 +13,8 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>GitDC</AssemblyName>
     <RootNamespace>GitDC</RootNamespace>
-    <Copyright>武汉海凌科技术有限公司</Copyright>
-    <Company>武汉海凌科技术有限公司</Company>
+    <Copyright>丁川</Copyright>
+    <Company>丁川</Company>
     <Authors>丁川</Authors>
     <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
     <!--将此参数设置为true可将dll从NuGet缓存复制到项目的输出-->
