@@ -1,7 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="DbScripts\MySql\" />
+    <Folder Include="DbScripts\Oracle\" />
+    <Folder Include="DbScripts\PgSql\" />
+    <Folder Include="DbScripts\SqlServer\" />
+    <Folder Include="Mappings\Oracle\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ding.Datas" Version="1.0.0-preview-20190808-01" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GitDC.Common\GitDC.Common.csproj" />
+    <ProjectReference Include="..\GitDC.Domain\GitDC.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

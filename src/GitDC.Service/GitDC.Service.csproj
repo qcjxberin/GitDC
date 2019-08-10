@@ -1,7 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ding.Applications" Version="1.0.0-preview-20190808-01" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GitDC.Data\GitDC.Data.csproj" />
+    <ProjectReference Include="..\GitDC.Domain\GitDC.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

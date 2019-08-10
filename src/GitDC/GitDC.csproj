@@ -1,25 +1,118 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <LangVersion>8</LangVersion>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>7b2cd3b9-dd1e-45d6-ab5c-8d46c8261a19</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <AssemblyName>GitDC</AssemblyName>
+    <RootNamespace>GitDC</RootNamespace>
+    <Copyright>武汉海凌科技术有限公司</Copyright>
+    <Company>武汉海凌科技术有限公司</Company>
+    <Authors>丁川</Authors>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+    <!--将此参数设置为true可将dll从NuGet缓存复制到项目的输出-->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!--将此参数设置为false可将所有的Razor视图一同发布，不会被预编译成xxx.Views.dll-->
+    <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Remove="AntDeploy.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Swagger\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Swagger\index.html" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
-    <PackageReference Include="Ding.Webs" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.0-beta1" />
+    <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Offices.Excels.Npoi" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Schedulers" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.MiddlewareAnalysis" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
-    <PackageReference Include="System.Composition.AttributedModel" Version="1.3.0-preview7.19362.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
+    <PackageReference Include="System.DirectoryServices.Protocols" Version="4.5.0" />
+    <PackageReference Include="TensorFlow.NET" Version="0.10.10" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GitDC.Common\GitDC.Common.csproj" />
+    <ProjectReference Include="..\GitDC.Data\GitDC.Data.csproj" />
+    <ProjectReference Include="..\GitDC.Domain\GitDC.Domain.csproj" />
+    <ProjectReference Include="..\GitDC.Service\GitDC.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="hosting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <!--公共语言运行库（CLR）支持两种类型的垃圾回收：
+       工作站垃圾收集，可在所有系统上使用，以及服务器垃圾收集，
+       这在多处理器系统上可用。
+      
+       对于单处理器计算机，默认工作站垃圾回收应该是最快的选择。
+       工作站或服务器都可用于双处理器计算机。
+       服务器垃圾收集应该是两个以上处理器的最快选择。
+      
+       有关GC的更多详细信息，请参阅此处： https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals-->
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <!--在工作站或服务器垃圾回收中，您可以启用并发垃圾回收，它使线程能够与执行垃圾的专用线程同时运行收集大部分时间的集合。
+      
+       并发垃圾收集使交互式应用程序能够更快地响应
+       最大限度地减少收集的暂停。 托管线程可以在大多数时间继续运行
+       并发垃圾收集线程正在运行。 这导致更短暂停
+       垃圾收集正在发生。
+      
+       要在多个进程运行时提高性能，请禁用并发垃圾回收。
+      
+       更多细节在这里： https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals#concurrent-garbage-collection-->
+    <ConcurrentGarbageCollection>false</ConcurrentGarbageCollection>
+  </PropertyGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties appsettings_1json__JsonSchema="" appsettings_1development_1json__JsonSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
 
 </Project>

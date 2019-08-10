@@ -19,6 +19,18 @@ namespace GitDC.Common
         public string DataProvider { get; set; } = "MySQL";
 
         /// <summary>
+        /// 验证码加密密钥
+        /// </summary>
+        [Description("验证码加密密钥")]
+        public string CaptchaSecretKey { get; set; } = "HAOCODING";
+
+        /// <summary>
+        /// 网站配置
+        /// </summary>
+        [Description("网站配置")]
+        public WebConfig WebConfig { get; set; } = new WebConfig();
+
+        /// <summary>
         /// Email配置
         /// </summary>
         [Description("Email配置")]
@@ -29,6 +41,31 @@ namespace GitDC.Common
         /// </summary>
         [Description("短信配置")]
         public Sms Sms { get; set; } = new Sms();
+
+        /// <summary>
+        /// Jwt配置项
+        /// </summary>
+        [Description("Jwt配置项")]
+        public JwtAuthConfigModel JWT { get; set; } = new JwtAuthConfigModel();
+    }
+
+    /// <summary>
+    /// 网站配置
+    /// </summary>
+    [DisplayName("网站配置")]
+    public class WebConfig
+    {
+        /// <summary>
+        /// 管理后台目录
+        /// </summary>
+        [Description("管理后台目录")]
+        public string AdminPath { get; set; } = "HaoCodingAdmin";
+
+        /// <summary>
+        /// Redis配置
+        /// </summary>
+        [Description("Redis配置")]
+        public string Redis_Configuration { get; set; } = "localhost:6379"; //不包含密码localhost:6379或者包含密码及其他配置localhost:6379,password=senparc,connectTimeout=1000,connectRetry=2,syncTimeout=10000,defaultDatabase=3
     }
 
     /// <summary>
@@ -104,5 +141,47 @@ namespace GitDC.Common
         /// 烽火短信密码
         /// </summary>
         public string FengHuoPassWord { get; set; } = "";
+    }
+
+    /// <summary>
+    /// Jwt配置项
+    /// </summary>
+    [DisplayName("Jwt配置项")]
+    public class JwtAuthConfigModel
+    {
+        /// <summary>
+        /// Jwt密钥
+        /// </summary>
+        public string JWTSecretKey { get; set; } = "lyDqoSIQmyFcUhmmN4KBRGWWzm1ELC7owHVtStOu1YD7wYz";
+
+        /// <summary>
+        /// Web过期时间
+        /// </summary>
+        public double WebExp { get; set; } = 800;
+
+        /// <summary>
+        /// App过期时间
+        /// </summary>
+        public double AppExp { get; set; } = 800;
+
+        /// <summary>
+        /// 微信过期时间
+        /// </summary>
+        public double WxExp { get; set; } = 800;
+
+        /// <summary>
+        /// 其他过期时间
+        /// </summary>
+        public double OtherExp { get; set; } = 800;
+
+        /// <summary>
+        /// 发行人
+        /// </summary>
+        public string Issuer { get; set; } = "GiciSky";
+
+        /// <summary>
+        /// 接收人
+        /// </summary>
+        public string Audience { get; set; } = "LiGongBang";
     }
 }

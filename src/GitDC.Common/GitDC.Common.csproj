@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ding.Biz.OAuthLogin" Version="1.0.0-preview-20190808-01" />
     <PackageReference Include="Ding.Core" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Events" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Webs" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.0-beta1" />
+    <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.0.180" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.5.0" />
   </ItemGroup>
 
 </Project>
