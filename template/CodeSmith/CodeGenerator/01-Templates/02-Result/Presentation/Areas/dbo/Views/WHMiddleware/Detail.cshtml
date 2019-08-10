@@ -1,0 +1,41 @@
+﻿@model WHMiddlewareDto
+<util-layout flex="70%" x-align="Center">
+    <util-card>
+        <util-card-header>
+            <util-icon font-awesome-icon="AddressCardO" style="margin-right: 10px;"></util-icon>
+            网络勾子中转表
+        </util-card-header>
+        <util-card-content class="form-content form-list-content">
+                <util-layout flex="100%">
+                    <label asp-for="Token"></label>: <util-label for="Token"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Source"></label>: <util-label for="Source"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Push"></label>: <util-label for="Push"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="PushUrl"></label>: <util-label for="PushUrl"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="PushToken"></label>: <util-label for="PushToken"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="CreationTime"></label>: <util-label for="CreationTime"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="CreatId"></label>: <util-label for="CreatId"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="LastModifiTime"></label>: <util-label for="LastModifiTime"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="LastModifiId"></label>: <util-label for="LastModifiId"/>
+                </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-layout>

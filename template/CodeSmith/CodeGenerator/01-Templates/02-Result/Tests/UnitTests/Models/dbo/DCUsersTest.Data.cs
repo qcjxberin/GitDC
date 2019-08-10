@@ -7,14 +7,14 @@ namespace GitDC.Test.Models.dbo {
     /// <summary>
     /// 用户名测试数据
     /// </summary>
-    public partial class UsersTest {
+    public partial class DCUsersTest {
         
         #region 测试数据1
         
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id = "a8ea46b2-edf9-4d71-b98e-e1f82f99dec9".ToLong();
+        public static readonly long Id = "dc7e6deb-af87-492c-81eb-4406837242f1".ToLong();
         /// <summary>
         /// 用户名
         /// </summary>
@@ -35,6 +35,10 @@ namespace GitDC.Test.Models.dbo {
         /// 密码
         /// </summary>
         public static readonly string Password = "Password";
+        /// <summary>
+        /// 盐值
+        /// </summary>
+        public static readonly string Salt = "Salt";
         /// <summary>
         /// 描述
         /// </summary>
@@ -75,7 +79,7 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id2 = "65d50201-3969-42ad-a7cd-c10023aee02d".ToLong();
+        public static readonly long Id2 = "7174b07c-0e0d-426e-a139-723f12169b6f".ToLong();
         /// <summary>
         /// 用户名
         /// </summary>
@@ -96,6 +100,10 @@ namespace GitDC.Test.Models.dbo {
         /// 密码
         /// </summary>
         public static readonly string Password2 = "Password2";
+        /// <summary>
+        /// 盐值
+        /// </summary>
+        public static readonly string Salt2 = "Salt2";
         /// <summary>
         /// 描述
         /// </summary>
@@ -136,13 +144,14 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 创建用户名实体
         /// </summary>
-        public static Users Create(string id = "") {
-            return new Users( id.ToLong() ) {
+        public static DCUsers Create(string id = "") {
+            return new DCUsers( id.ToLong() ) {
                 Name = Name,
                 NickName = NickName,
                 Email = Email,
                 PasswordVersion = PasswordVersion,
                 Password = Password,
+                Salt = Salt,
                 Description = Description,
                 IsSystemAdministrator = IsSystemAdministrator,
                 CreationTime = CreationTime,
@@ -158,13 +167,14 @@ namespace GitDC.Test.Models.dbo {
         /// 创建用户名实体2
         /// </summary>
         /// <param name="id">用户名编号</param>
-        public static Users Create2( string id = "" ) {
-            return new Users( id.ToLong() ) {
+        public static DCUsers Create2( string id = "" ) {
+            return new DCUsers( id.ToLong() ) {
                 Name = Name2,
                 NickName = NickName2,
                 Email = Email2,
                 PasswordVersion = PasswordVersion2,
                 Password = Password2,
+                Salt = Salt2,
                 Description = Description2,
                 IsSystemAdministrator = IsSystemAdministrator2,
                 CreationTime = CreationTime2,
@@ -183,8 +193,8 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 创建列表
         /// </summary>
-        public static List<Users> CreateList() {
-            return new List<Users>() {
+        public static List<DCUsers> CreateList() {
+            return new List<DCUsers>() {
                 Create(),
                 Create2()
             };

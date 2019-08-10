@@ -1,5 +1,11 @@
 ﻿<ItemGroup>
-    <Compile Update="Models/Users.*.cs">
-      <DependentUpon>Users.cs</DependentUpon>
+    <Compile Update="Models/DCUsers.*.cs">
+      <DependentUpon>DCUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models/WHLogs.*.cs">
+      <DependentUpon>WHLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models/WHMiddleware.*.cs">
+      <DependentUpon>WHMiddleware.cs</DependentUpon>
     </Compile>
 </ItemGroup>

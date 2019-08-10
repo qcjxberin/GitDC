@@ -1,0 +1,50 @@
+﻿@model DCUsersDto
+<util-layout flex="70%" x-align="Center">
+    <util-card>
+        <util-card-header>
+            <util-icon font-awesome-icon="AddressCardO" style="margin-right: 10px;"></util-icon>
+            用户名
+        </util-card-header>
+        <util-card-content class="form-content form-list-content">
+                <util-layout flex="100%">
+                    <label asp-for="Name"></label>: <util-label for="Name"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="NickName"></label>: <util-label for="NickName"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Email"></label>: <util-label for="Email"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="PasswordVersion"></label>: <util-label for="PasswordVersion"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Password"></label>: <util-label for="Password"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Salt"></label>: <util-label for="Salt"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="Description"></label>: <util-label for="Description"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="IsSystemAdministrator"></label>: <util-label for="IsSystemAdministrator"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="CreationTime"></label>: <util-label for="CreationTime"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="CreatId"></label>: <util-label for="CreatId"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="LastModifiTime"></label>: <util-label for="LastModifiTime"/>
+                </util-layout>
+                <util-layout flex="100%">
+                    <label asp-for="LastModifiId"></label>: <util-label for="LastModifiId"/>
+                </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-layout>

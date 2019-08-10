@@ -1,0 +1,91 @@
+﻿@model DCUsersDto
+
+<style>
+    .mat-column-name {
+        max-width: 20%;
+    }
+    .mat-column-nickName {
+        max-width: 20%;
+    }
+    .mat-column-email {
+        max-width: 20%;
+    }
+    .mat-column-passwordVersion {
+        max-width: 20%;
+    }
+    .mat-column-password {
+        max-width: 20%;
+    }
+    .mat-column-salt {
+        max-width: 20%;
+    }
+    .mat-column-description {
+        max-width: 20%;
+    }
+    .mat-column-isSystemAdministrator {
+        max-width: 80px;
+    }
+    .mat-column-creationTime {
+        max-width: 100px;
+    }
+    .mat-column-creatId {
+        max-width: 20%;
+    }
+    .mat-column-lastModifiTime {
+        max-width: 20%;
+    }
+    .mat-column-lastModifiId {
+        max-width: 20%;
+    }
+    .mat-column-operation {
+        max-width: 120px;
+    }
+</style>
+
+<util-toolbar>
+    <util-layout>
+        <util-textbox model="queryParam.keyword" placeholder="搜索" on-change="search()"></util-textbox>
+    </util-layout>
+    <util-layout>
+        <util-a styles="Icon" tooltip="添加用户名" link="create">
+            <util-icon font-awesome-icon="Plus"></util-icon>
+        </util-a>
+        <util-button styles="Icon" tooltip="批量删除" on-click="delete()">
+            <util-icon material-icon="Delete"></util-icon>
+        </util-button>
+        <util-button styles="Icon" tooltip="刷新" on-click="refresh()">
+            <util-icon material-icon="Sync"></util-icon>
+        </util-button>
+    </util-layout>
+</util-toolbar>
+
+<util-table id="table_DCUsers" max-height="700" base-url="dCUsers" query-param="queryParam" sort="CreationTime" sort-direction="Desc">
+    <util-table-column type="Checkbox"></util-table-column>
+    <util-table-column type="LineNumber"></util-table-column>
+    <util-table-column for="Name" sort="true"></util-table-column>
+    <util-table-column for="NickName" sort="true"></util-table-column>
+    <util-table-column for="Email" sort="true"></util-table-column>
+    <util-table-column for="PasswordVersion" sort="true"></util-table-column>
+    <util-table-column for="Password" sort="true"></util-table-column>
+    <util-table-column for="Salt" sort="true"></util-table-column>
+    <util-table-column for="Description" sort="true"></util-table-column>
+    <util-table-column for="IsSystemAdministrator" sort="true"></util-table-column>
+    <util-table-column for="CreationTime" sort="true"></util-table-column>
+    <util-table-column for="CreatId" sort="true"></util-table-column>
+    <util-table-column for="LastModifiTime" sort="true"></util-table-column>
+    <util-table-column for="LastModifiId" sort="true"></util-table-column>
+    <util-table-column title="操作" column="operation">
+        <util-table-cell>
+            <util-a styles="Icon" tooltip="编辑" bind-link="['update',row.id]">
+                <util-icon material-icon="Edit"></util-icon>
+            </util-a>
+            <util-button styles="Icon" menu-id="menu">
+                <util-icon material-icon="More_Vert"></util-icon>
+                <util-menu id="menu">
+                    <util-menu-item label="删除" material-icon="Delete" on-click="delete(row.id)"></util-menu-item>
+                    <util-menu-item label="详细" material-icon="Visibility" bind-link="['detail',row.id]"></util-menu-item>
+                </util-menu>
+            </util-button>
+        </util-table-cell>
+    </util-table-column>
+</util-table>

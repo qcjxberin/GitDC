@@ -1,0 +1,59 @@
+﻿@model WHLogsDto
+
+<style>
+    .mat-column-wHTypes {
+        max-width: 20%;
+    }
+    .mat-column-content {
+        max-width: 20%;
+    }
+    .mat-column-creatId {
+        max-width: 20%;
+    }
+    .mat-column-creationTime {
+        max-width: 100px;
+    }
+    .mat-column-operation {
+        max-width: 120px;
+    }
+</style>
+
+<util-toolbar>
+    <util-layout>
+        <util-textbox model="queryParam.keyword" placeholder="搜索" on-change="search()"></util-textbox>
+    </util-layout>
+    <util-layout>
+        <util-a styles="Icon" tooltip="添加网络勾子推送内容日志" link="create">
+            <util-icon font-awesome-icon="Plus"></util-icon>
+        </util-a>
+        <util-button styles="Icon" tooltip="批量删除" on-click="delete()">
+            <util-icon material-icon="Delete"></util-icon>
+        </util-button>
+        <util-button styles="Icon" tooltip="刷新" on-click="refresh()">
+            <util-icon material-icon="Sync"></util-icon>
+        </util-button>
+    </util-layout>
+</util-toolbar>
+
+<util-table id="table_WHLogs" max-height="700" base-url="wHLogs" query-param="queryParam" sort="CreationTime" sort-direction="Desc">
+    <util-table-column type="Checkbox"></util-table-column>
+    <util-table-column type="LineNumber"></util-table-column>
+    <util-table-column for="WHTypes" sort="true"></util-table-column>
+    <util-table-column for="Content" sort="true"></util-table-column>
+    <util-table-column for="CreatId" sort="true"></util-table-column>
+    <util-table-column for="CreationTime" sort="true"></util-table-column>
+    <util-table-column title="操作" column="operation">
+        <util-table-cell>
+            <util-a styles="Icon" tooltip="编辑" bind-link="['update',row.id]">
+                <util-icon material-icon="Edit"></util-icon>
+            </util-a>
+            <util-button styles="Icon" menu-id="menu">
+                <util-icon material-icon="More_Vert"></util-icon>
+                <util-menu id="menu">
+                    <util-menu-item label="删除" material-icon="Delete" on-click="delete(row.id)"></util-menu-item>
+                    <util-menu-item label="详细" material-icon="Visibility" bind-link="['detail',row.id]"></util-menu-item>
+                </util-menu>
+            </util-button>
+        </util-table-cell>
+    </util-table-column>
+</util-table>

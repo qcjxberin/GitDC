@@ -28,7 +28,9 @@ namespace GitDC.Service.Configs {
         /// 加载仓储
         /// </summary>
         protected virtual void LoadRepositories( ContainerBuilder builder ) {
-            builder.AddScoped<IUsersRepository,UsersRepository>();
+            builder.AddScoped<IDCUsersRepository,DCUsersRepository>();
+            builder.AddScoped<IWHLogsRepository,WHLogsRepository>();
+            builder.AddScoped<IWHMiddlewareRepository,WHMiddlewareRepository>();
         }
         
         /// <summary>
@@ -41,7 +43,9 @@ namespace GitDC.Service.Configs {
         /// 加载应用服务
         /// </summary>
         protected virtual void LoadApplicationServices( ContainerBuilder builder ) {
-            builder.AddScoped<IUsersService,UsersService>().PropertiesAutowired();
+            builder.AddScoped<IDCUsersService,DCUsersService>().PropertiesAutowired();
+            builder.AddScoped<IWHLogsService,WHLogsService>().PropertiesAutowired();
+            builder.AddScoped<IWHMiddlewareService,WHMiddlewareService>().PropertiesAutowired();
         }
     }
 }

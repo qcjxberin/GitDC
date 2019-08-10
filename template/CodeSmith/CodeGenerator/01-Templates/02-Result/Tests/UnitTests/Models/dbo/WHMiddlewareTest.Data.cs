@@ -5,44 +5,36 @@ using GitDC.Domain.Models;
 
 namespace GitDC.Test.Models.dbo {
     /// <summary>
-    /// 用户名测试数据
+    /// 网络勾子中转表测试数据
     /// </summary>
-    public partial class UsersTest {
+    public partial class WHMiddlewareTest {
         
         #region 测试数据1
         
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id = "a8ea46b2-edf9-4d71-b98e-e1f82f99dec9".ToLong();
+        public static readonly Guid Id = "1ab2db0e-d8f3-4792-9f60-059a0e88d96c".ToGuid();
         /// <summary>
-        /// 用户名
+        /// 令牌
         /// </summary>
-        public static readonly string Name = "Name";
+        public static readonly string Token = "Token";
         /// <summary>
-        /// 昵称
+        /// 1.腾讯云开发者中心项目
         /// </summary>
-        public static readonly string NickName = "NickName";
+        public static readonly short? Source = "Source";
         /// <summary>
-        /// 邮箱
+        /// 1.钉钉
         /// </summary>
-        public static readonly string Email = "Email";
+        public static readonly short? Push = "Push";
         /// <summary>
-        /// 密码版本
+        /// 推送Url
         /// </summary>
-        public static readonly short? PasswordVersion = "PasswordVersion";
+        public static readonly string PushUrl = "PushUrl";
         /// <summary>
-        /// 密码
+        /// 推送令牌
         /// </summary>
-        public static readonly string Password = "Password";
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public static readonly string Description = "Description";
-        /// <summary>
-        /// 是否系统管理员
-        /// </summary>
-        public static readonly bool? IsSystemAdministrator = true;
+        public static readonly string PushToken = "PushToken";
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -75,35 +67,27 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id2 = "65d50201-3969-42ad-a7cd-c10023aee02d".ToLong();
+        public static readonly Guid Id2 = "a89fdc93-1eac-438c-9df3-5dff02ec1b5f".ToGuid();
         /// <summary>
-        /// 用户名
+        /// 令牌
         /// </summary>
-        public static readonly string Name2 = "Name2";
+        public static readonly string Token2 = "Token2";
         /// <summary>
-        /// 昵称
+        /// 1.腾讯云开发者中心项目
         /// </summary>
-        public static readonly string NickName2 = "NickName2";
+        public static readonly short? Source2 = "Source2";
         /// <summary>
-        /// 邮箱
+        /// 1.钉钉
         /// </summary>
-        public static readonly string Email2 = "Email2";
+        public static readonly short? Push2 = "Push2";
         /// <summary>
-        /// 密码版本
+        /// 推送Url
         /// </summary>
-        public static readonly short? PasswordVersion2 = "PasswordVersion2";
+        public static readonly string PushUrl2 = "PushUrl2";
         /// <summary>
-        /// 密码
+        /// 推送令牌
         /// </summary>
-        public static readonly string Password2 = "Password2";
-        /// <summary>
-        /// 描述
-        /// </summary>
-        public static readonly string Description2 = "Description2";
-        /// <summary>
-        /// 是否系统管理员
-        /// </summary>
-        public static readonly bool? IsSystemAdministrator2 = true;
+        public static readonly string PushToken2 = "PushToken2";
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -134,17 +118,15 @@ namespace GitDC.Test.Models.dbo {
         #region Create(创建实体)
         
         /// <summary>
-        /// 创建用户名实体
+        /// 创建网络勾子中转表实体
         /// </summary>
-        public static Users Create(string id = "") {
-            return new Users( id.ToLong() ) {
-                Name = Name,
-                NickName = NickName,
-                Email = Email,
-                PasswordVersion = PasswordVersion,
-                Password = Password,
-                Description = Description,
-                IsSystemAdministrator = IsSystemAdministrator,
+        public static WHMiddleware Create(string id = "") {
+            return new WHMiddleware( id.ToGuid() ) {
+                Token = Token,
+                Source = Source,
+                Push = Push,
+                PushUrl = PushUrl,
+                PushToken = PushToken,
                 CreationTime = CreationTime,
                 CreatId = CreatId,
                 LastModifiTime = LastModifiTime,
@@ -155,18 +137,16 @@ namespace GitDC.Test.Models.dbo {
         }
         
         /// <summary>
-        /// 创建用户名实体2
+        /// 创建网络勾子中转表实体2
         /// </summary>
-        /// <param name="id">用户名编号</param>
-        public static Users Create2( string id = "" ) {
-            return new Users( id.ToLong() ) {
-                Name = Name2,
-                NickName = NickName2,
-                Email = Email2,
-                PasswordVersion = PasswordVersion2,
-                Password = Password2,
-                Description = Description2,
-                IsSystemAdministrator = IsSystemAdministrator2,
+        /// <param name="id">网络勾子中转表编号</param>
+        public static WHMiddleware Create2( string id = "" ) {
+            return new WHMiddleware( id.ToGuid() ) {
+                Token = Token2,
+                Source = Source2,
+                Push = Push2,
+                PushUrl = PushUrl2,
+                PushToken = PushToken2,
                 CreationTime = CreationTime2,
                 CreatId = CreatId2,
                 LastModifiTime = LastModifiTime2,
@@ -183,8 +163,8 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 创建列表
         /// </summary>
-        public static List<Users> CreateList() {
-            return new List<Users>() {
+        public static List<WHMiddleware> CreateList() {
+            return new List<WHMiddleware>() {
                 Create(),
                 Create2()
             };

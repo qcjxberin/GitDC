@@ -1,0 +1,412 @@
+{
+  "modules": [
+    {
+      "name": "User",
+      "chnname": "用户",
+      "entities": [
+        {
+          "title": "Users",
+          "fields": [
+            {
+              "name": "ID",
+              "type": "BigInt",
+              "remark": "",
+              "chnname": "编号",
+              "autoIncrement": true,
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "Name",
+              "type": "String20",
+              "remark": "",
+              "chnname": "用户名"
+            },
+            {
+              "name": "NickName",
+              "type": "String20",
+              "remark": "",
+              "chnname": "昵称"
+            },
+            {
+              "name": "Email",
+              "type": "String50",
+              "remark": "",
+              "chnname": "邮箱"
+            },
+            {
+              "name": "PasswordVersion",
+              "type": "smallint",
+              "remark": "",
+              "chnname": "密码版本"
+            },
+            {
+              "name": "Password",
+              "type": "String32",
+              "remark": "",
+              "chnname": "密码"
+            },
+            {
+              "name": "Description",
+              "type": "String500",
+              "remark": "",
+              "chnname": "描述"
+            },
+            {
+              "name": "IsSystemAdministrator",
+              "type": "DingBoolean",
+              "remark": "",
+              "chnname": "是否系统管理员"
+            },
+            {
+              "name": "CreationTime",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间",
+              "notNull": false
+            },
+            {
+              "name": "CreatId",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "创建人编号",
+              "notNull": false
+            },
+            {
+              "name": "LastModifiTime",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "最后修改时间"
+            },
+            {
+              "name": "LastModifiId",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "最后修改人编号"
+            },
+            {
+              "name": "IsDeleted",
+              "type": "DingBoolean",
+              "remark": "软删除，数据不会被物理删除",
+              "chnname": "是否删除",
+              "notNull": true,
+              "defaultValue": ""
+            },
+            {
+              "name": "Version",
+              "type": "DingVersion",
+              "remark": "处理并发问题",
+              "chnname": "乐观锁"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "用户名"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    },
+    {
+      "name": "WebHook",
+      "chnname": "网络勾子",
+      "entities": [
+        {
+          "title": "WH_Middleware",
+          "fields": [
+            {
+              "name": "Id",
+              "type": "DingNumber",
+              "remark": "",
+              "chnname": "编号",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "Token",
+              "type": "String100",
+              "remark": "",
+              "chnname": "令牌"
+            },
+            {
+              "name": "Source",
+              "type": "smallint",
+              "remark": "1.腾讯云开发者中心项目",
+              "chnname": "来源"
+            },
+            {
+              "name": "Push",
+              "type": "smallint",
+              "remark": "1.钉钉",
+              "chnname": "推送"
+            },
+            {
+              "name": "PushToken",
+              "type": "String100",
+              "remark": "",
+              "chnname": "推送令牌"
+            },
+            {
+              "name": "CreationTime",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间",
+              "notNull": false
+            },
+            {
+              "name": "CreatId",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "创建人编号",
+              "notNull": false
+            },
+            {
+              "name": "LastModifiTime",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "最后修改时间"
+            },
+            {
+              "name": "LastModifiId",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "最后修改人编号"
+            },
+            {
+              "name": "IsDeleted",
+              "type": "DingBoolean",
+              "remark": "软删除，数据不会被物理删除",
+              "chnname": "是否删除",
+              "notNull": true,
+              "defaultValue": ""
+            },
+            {
+              "name": "Version",
+              "type": "DingVersion",
+              "remark": "处理并发问题",
+              "chnname": "乐观锁"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "网络勾子中转表"
+        },
+        {
+          "title": "WH_Logs",
+          "fields": [
+            {
+              "name": "Id",
+              "type": "DingNumber",
+              "remark": "",
+              "chnname": "编号",
+              "pk": true,
+              "notNull": true
+            },
+            {
+              "name": "WHTypes",
+              "type": "YesNo",
+              "remark": "是为中转，否为非中转",
+              "chnname": "类型",
+              "notNull": true
+            },
+            {
+              "name": "Content",
+              "type": "String2000",
+              "remark": "",
+              "chnname": "推送内容"
+            },
+            {
+              "name": "CreatId",
+              "type": "Integer",
+              "remark": "",
+              "chnname": "创建人编号",
+              "notNull": false
+            },
+            {
+              "name": "CreationTime",
+              "type": "DateTime",
+              "remark": "",
+              "chnname": "创建时间",
+              "notNull": false
+            },
+            {
+              "name": "IsDeleted",
+              "type": "DingBoolean",
+              "remark": "软删除，数据不会被物理删除",
+              "chnname": "是否删除",
+              "notNull": true,
+              "defaultValue": ""
+            },
+            {
+              "name": "Version",
+              "type": "DingVersion",
+              "remark": "处理并发问题",
+              "chnname": "乐观锁"
+            }
+          ],
+          "indexs": [],
+          "headers": [
+            {
+              "fieldName": "chnname",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "name",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "type",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "dataType",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "remark",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "pk",
+              "relationNoShow": false
+            },
+            {
+              "fieldName": "notNull",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "autoIncrement",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "defaultValue",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "relationNoShow",
+              "relationNoShow": true
+            },
+            {
+              "fieldName": "uiHint",
+              "relationNoShow": true
+            }
+          ],
+          "chnname": "网络勾子推送内容日志"
+        }
+      ],
+      "graphCanvas": {
+        "nodes": [],
+        "edges": []
+      },
+      "associations": []
+    }
+  ],
+  "message": "增加网络勾子表",
+  "version": "V1.0.2",
+  "changes": [
+    {
+      "type": "entity",
+      "name": "WH_Middleware",
+      "opt": "add"
+    },
+    {
+      "type": "entity",
+      "name": "WH_Logs",
+      "opt": "add"
+    }
+  ],
+  "date": "2019/8/10 14:56:29"
+}
