@@ -13,10 +13,6 @@ export class WHLogsViewModel extends ViewModel {
      */
     content;
     /**
-     * 创建人编号
-     */
-    creatId;
-    /**
      * 创建时间
      */
     creationTime;

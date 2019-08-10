@@ -9,17 +9,25 @@ namespace GitDC.Data.Pos.dbo{
     /// </summary>
     public class WHMiddlewarePo : PersistentObjectBase<Guid>,IDelete{
         /// <summary>
+        /// 名称
+        /// </summary>  
+        public string Name { get; set; }
+        /// <summary>
+        /// 介绍
+        /// </summary>  
+        public string Summary { get; set; }
+        /// <summary>
         /// 令牌
         /// </summary>  
         public string Token { get; set; }
         /// <summary>
-        /// 1.腾讯云开发者中心项目
+        /// 1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea
         /// </summary>  
-        public short? Source { get; set; }
+        public short Source { get; set; }
         /// <summary>
-        /// 1.钉钉
+        /// 1.钉钉，2为企业微信
         /// </summary>  
-        public short? Push { get; set; }
+        public short Push { get; set; }
         /// <summary>
         /// 推送Url
         /// </summary>  

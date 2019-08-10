@@ -10,27 +10,45 @@ namespace GitDC.Service.Dtos.dbo {
     /// </summary>
     public class WHMiddlewareDto : DtoBase {
         /// <summary>
+        /// 名称
+        /// </summary>
+        [StringLength( 50, ErrorMessage = "名称输入过长，不能超过50位" )]
+        [Column( "Name" )]
+        [Display( Name = "名称" )]
+        public string Name { get; set; }
+        /// <summary>
+        /// 介绍
+        /// </summary>
+        [StringLength( 500, ErrorMessage = "介绍输入过长，不能超过500位" )]
+        [Column( "Summary" )]
+        [Display( Name = "介绍" )]
+        public string Summary { get; set; }
+        /// <summary>
         /// 令牌
         /// </summary>
+        [Required(ErrorMessage = "令牌不能为空")]
         [StringLength( 100, ErrorMessage = "令牌输入过长，不能超过100位" )]
         [Column( "Token" )]
         [Display( Name = "令牌" )]
         public string Token { get; set; }
         /// <summary>
-        /// 1.腾讯云开发者中心项目
+        /// 1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea
         /// </summary>
+        [Required(ErrorMessage = "1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea不能为空")]
         [Column( "Source" )]
-        [Display( Name = "1.腾讯云开发者中心项目" )]
-        public short? Source { get; set; }
+        [Display( Name = "1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea" )]
+        public short Source { get; set; }
         /// <summary>
-        /// 1.钉钉
+        /// 1.钉钉，2为企业微信
         /// </summary>
+        [Required(ErrorMessage = "1.钉钉，2为企业微信不能为空")]
         [Column( "Push" )]
-        [Display( Name = "1.钉钉" )]
-        public short? Push { get; set; }
+        [Display( Name = "1.钉钉，2为企业微信" )]
+        public short Push { get; set; }
         /// <summary>
         /// 推送Url
         /// </summary>
+        [Required(ErrorMessage = "推送Url不能为空")]
         [StringLength( 250, ErrorMessage = "推送Url输入过长，不能超过250位" )]
         [Column( "PushUrl" )]
         [Display( Name = "推送Url" )]

@@ -31,23 +31,15 @@ namespace GitDC.Domain.Models {
         /// 是为中转，否为非中转
         /// </summary>
         [DisplayName( "是为中转，否为非中转" )]
-        [Required(ErrorMessage = "是为中转，否为非中转不能为空")]
-        [StringLength( 1, ErrorMessage = "是为中转，否为非中转输入过长，不能超过1位" )]
         [Column( "WHTypes" )]
-        public string WHTypes { get; set; }
+        public bool WHTypes { get; set; }
         /// <summary>
         /// 推送内容
         /// </summary>
         [DisplayName( "推送内容" )]
-        [StringLength( 2000, ErrorMessage = "推送内容输入过长，不能超过2000位" )]
+        [StringLength( 16, ErrorMessage = "推送内容输入过长，不能超过16位" )]
         [Column( "Content" )]
         public string Content { get; set; }
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        [DisplayName( "创建人编号" )]
-        [Column( "CreatId" )]
-        public int? CreatId { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -68,7 +60,6 @@ namespace GitDC.Domain.Models {
             AddDescription( t => t.Id );
             AddDescription( t => t.WHTypes );
             AddDescription( t => t.Content );
-            AddDescription( t => t.CreatId );
             AddDescription( t => t.CreationTime );
         }
         
@@ -79,7 +70,6 @@ namespace GitDC.Domain.Models {
             AddChange( t => t.Id, other.Id );
             AddChange( t => t.WHTypes, other.WHTypes );
             AddChange( t => t.Content, other.Content );
-            AddChange( t => t.CreatId, other.CreatId );
             AddChange( t => t.CreationTime, other.CreationTime );
         }
     }

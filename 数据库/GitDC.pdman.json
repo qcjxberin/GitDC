@@ -177,28 +177,45 @@
               "notNull": true
             },
             {
+              "name": "Name",
+              "type": "String50",
+              "remark": "",
+              "chnname": "名称",
+              "notNull": false
+            },
+            {
+              "name": "Summary",
+              "type": "String500",
+              "remark": "",
+              "chnname": "介绍"
+            },
+            {
               "name": "Token",
               "type": "String100",
               "remark": "",
-              "chnname": "令牌"
+              "chnname": "令牌",
+              "notNull": true
             },
             {
               "name": "Source",
               "type": "smallint",
-              "remark": "1.腾讯云开发者中心项目",
-              "chnname": "来源"
+              "remark": "1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea",
+              "chnname": "来源",
+              "notNull": true
             },
             {
               "name": "Push",
               "type": "smallint",
-              "remark": "1.钉钉",
-              "chnname": "推送"
+              "remark": "1.钉钉，2为企业微信",
+              "chnname": "推送",
+              "notNull": true
             },
             {
               "name": "PushUrl",
               "type": "String250",
               "remark": "",
-              "chnname": "推送Url"
+              "chnname": "推送Url",
+              "notNull": true
             },
             {
               "name": "PushToken",
@@ -309,23 +326,16 @@
             },
             {
               "name": "WHTypes",
-              "type": "YesNo",
+              "type": "DingBoolean",
               "remark": "是为中转，否为非中转",
               "chnname": "类型",
               "notNull": true
             },
             {
               "name": "Content",
-              "type": "String2000",
+              "type": "LongText",
               "remark": "",
               "chnname": "推送内容"
-            },
-            {
-              "name": "CreatId",
-              "type": "Integer",
-              "remark": "",
-              "chnname": "创建人编号",
-              "notNull": false
             },
             {
               "name": "CreationTime",

@@ -9,6 +9,7 @@ using GitDC.Domain.Repositories;
 using GitDC.Service.Dtos.dbo;
 using GitDC.Service.Queries.dbo;
 using GitDC.Service.Abstractions.dbo;
+using System.Threading.Tasks;
 
 namespace GitDC.Service.Implements.dbo {
     /// <summary>
@@ -36,6 +37,16 @@ namespace GitDC.Service.Implements.dbo {
         /// <param name="param">查询参数</param>
         protected override IQueryBase<WHMiddleware> CreateQuery( WHMiddlewareQuery param ) {
             return new Query<WHMiddleware>( param );
+        }
+
+        /// <summary>
+        /// 获取指定Token的数据
+        /// </summary>
+        /// <param name="Token"></param>
+        /// <returns></returns>
+        public async Task<WHMiddleware> GetByToken(string Token)
+        {
+            return await WHMiddlewareRepository.SingleAsync(x => x.Token == Token);
         }
     }
 }

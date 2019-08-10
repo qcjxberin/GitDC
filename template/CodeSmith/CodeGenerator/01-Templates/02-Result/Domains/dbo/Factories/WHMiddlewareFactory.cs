@@ -10,9 +10,11 @@ namespace GitDC.Domains.Factories {
         /// 创建网络勾子中转表
         /// </summary>
         /// <param name="id">编号</param>
+        /// <param name="name">名称</param>
+        /// <param name="summary">介绍</param>
         /// <param name="token">令牌</param>
-        /// <param name="source">1.腾讯云开发者中心项目</param>
-        /// <param name="push">1.钉钉</param>
+        /// <param name="source">1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea</param>
+        /// <param name="push">1.钉钉，2为企业微信</param>
         /// <param name="pushUrl">推送Url</param>
         /// <param name="pushToken">推送令牌</param>
         /// <param name="creationTime">创建时间</param>
@@ -23,9 +25,11 @@ namespace GitDC.Domains.Factories {
         /// <param name="version">处理并发问题</param>
         public static WHMiddleware Create( 
             Guid id,
+            string name,
+            string summary,
             string token,
-            short? source,
-            short? push,
+            short source,
+            short push,
             string pushUrl,
             string pushToken,
             DateTime? creationTime,
@@ -37,6 +41,8 @@ namespace GitDC.Domains.Factories {
         ) {
             WHMiddleware result;
             result = new WHMiddleware( id );
+            result.Name = name;
+            result.Summary = summary;
             result.Token = token;
             result.Source = source;
             result.Push = push;

@@ -153,6 +153,7 @@ namespace GitDC.Common
     /// <summary>
     /// 钉钉群机器人消息类型枚举
     /// </summary>
+    /// <remarks>此处要注意小写</remarks>
     public enum MsgTypeEnum
     {
         text,

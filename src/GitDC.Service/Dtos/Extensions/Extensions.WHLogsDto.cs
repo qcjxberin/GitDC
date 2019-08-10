@@ -25,9 +25,8 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
             if( dto == null )
                 return new WHLogs();
             return new WHLogs( dto.Id.ToGuid() ) {
-                WHTypes = dto.WHTypes,
+                    WHTypes = dto.WHTypes.SafeValue(),
                 Content = dto.Content,
-                CreatId = dto.CreatId,
                 CreationTime = dto.CreationTime,
                     IsDeleted = dto.IsDeleted.SafeValue(),
                 Version = dto.Version,
@@ -51,9 +50,6 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        content : dto.Content,
-        //        
-        //        
-        //        creatId : dto.CreatId,
         //        
         //        
         //        creationTime : dto.CreationTime,
@@ -94,9 +90,6 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        Content = entity.Content,
-        //        
-        //        
-        //        CreatId = entity.CreatId,
         //        
         //        
         //        CreationTime = entity.CreationTime,

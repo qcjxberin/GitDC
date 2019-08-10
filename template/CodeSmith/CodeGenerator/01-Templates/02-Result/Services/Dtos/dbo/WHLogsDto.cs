@@ -12,24 +12,16 @@ namespace GitDC.Service.Dtos.dbo {
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
-        [Required(ErrorMessage = "是为中转，否为非中转不能为空")]
-        [StringLength( 1, ErrorMessage = "是为中转，否为非中转输入过长，不能超过1位" )]
         [Column( "WHTypes" )]
         [Display( Name = "是为中转，否为非中转" )]
-        public string WHTypes { get; set; }
+        public bool? WHTypes { get; set; }
         /// <summary>
         /// 推送内容
         /// </summary>
-        [StringLength( 2000, ErrorMessage = "推送内容输入过长，不能超过2000位" )]
+        [StringLength( 16, ErrorMessage = "推送内容输入过长，不能超过16位" )]
         [Column( "Content" )]
         [Display( Name = "推送内容" )]
         public string Content { get; set; }
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        [Column( "CreatId" )]
-        [Display( Name = "创建人编号" )]
-        public int? CreatId { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>

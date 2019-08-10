@@ -25,6 +25,8 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
             if( dto == null )
                 return new WHMiddleware();
             return new WHMiddleware( dto.Id.ToGuid() ) {
+                Name = dto.Name,
+                Summary = dto.Summary,
                 Token = dto.Token,
                 Source = dto.Source,
                 Push = dto.Push,
@@ -50,6 +52,12 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        id : dto.Id.ToGuid(),
+        //        
+        //        
+        //        name : dto.Name,
+        //        
+        //        
+        //        summary : dto.Summary,
         //        
         //        
         //        token : dto.Token,
@@ -108,6 +116,12 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        Id = entity.Id.ToString(),
+        //        
+        //        
+        //        Name = entity.Name,
+        //        
+        //        
+        //        Summary = entity.Summary,
         //        
         //        
         //        Token = entity.Token,

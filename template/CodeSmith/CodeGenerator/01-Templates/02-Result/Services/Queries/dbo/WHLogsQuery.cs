@@ -13,16 +13,11 @@ namespace GitDC.Service.Queries.dbo {
         /// </summary>
         [Display( Name = "编号" )]
         public Guid? Id { get; set; }
-        
-        private string _wHTypes = string.Empty;
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
         [Display( Name = "是为中转，否为非中转" )]
-        public string WHTypes {
-            get => _wHTypes == null ? string.Empty : _wHTypes.Trim();
-            set => _wHTypes = value;
-        }
+        public bool? WHTypes { get; set; }
         
         private string _content = string.Empty;
         /// <summary>
@@ -33,11 +28,6 @@ namespace GitDC.Service.Queries.dbo {
             get => _content == null ? string.Empty : _content.Trim();
             set => _content = value;
         }
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        [Display( Name = "创建人编号" )]
-        public int? CreatId { get; set; }
         /// <summary>
         /// 起始创建时间
         /// </summary>

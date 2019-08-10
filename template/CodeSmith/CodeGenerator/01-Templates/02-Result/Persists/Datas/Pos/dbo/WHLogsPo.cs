@@ -11,15 +11,11 @@ namespace GitDC.Data.Pos.dbo{
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>  
-        public string WHTypes { get; set; }
+        public bool WHTypes { get; set; }
         /// <summary>
         /// 推送内容
         /// </summary>  
         public string Content { get; set; }
-        /// <summary>
-        /// 创建人编号
-        /// </summary>  
-        public int? CreatId { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>  

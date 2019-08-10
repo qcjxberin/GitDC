@@ -1,6 +1,12 @@
 ﻿@model WHMiddlewareDto
 
 <style>
+    .mat-column-name {
+        max-width: 20%;
+    }
+    .mat-column-summary {
+        max-width: 20%;
+    }
     .mat-column-token {
         max-width: 20%;
     }
@@ -53,6 +59,8 @@
 <util-table id="table_WHMiddleware" max-height="700" base-url="wHMiddleware" query-param="queryParam" sort="CreationTime" sort-direction="Desc">
     <util-table-column type="Checkbox"></util-table-column>
     <util-table-column type="LineNumber"></util-table-column>
+    <util-table-column for="Name" sort="true"></util-table-column>
+    <util-table-column for="Summary" sort="true"></util-table-column>
     <util-table-column for="Token" sort="true"></util-table-column>
     <util-table-column for="Source" sort="true"></util-table-column>
     <util-table-column for="Push" sort="true"></util-table-column>

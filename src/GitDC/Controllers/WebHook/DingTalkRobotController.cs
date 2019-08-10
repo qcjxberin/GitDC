@@ -1,7 +1,14 @@
-﻿using Ding.Webs.Controllers;
+﻿using Ding.Helpers;
+using Ding.Log;
+using Ding.Webs;
+using Ding.Webs.Controllers;
 using GitDC.Common;
+using GitDC.Domain.Models;
+using GitDC.Service.Abstractions.dbo;
+using GitDC.Service.Dtos.dbo;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
@@ -10,27 +17,118 @@ using System.Threading.Tasks;
 namespace GitDC.Controllers
 {
     /// <summary>
-    /// 与钉钉机器人交互
+    /// 与机器人交互
     /// </summary>
-    public class DingTalkRobotController : WebControllerBase
+    public class RobotController : WebControllerBase
     {
-        private readonly string WebHook_Token = "https://oapi.dingtalk.com/robot/send?access_token=542ac7c0ee4546c36581eed3873270ecd86cc0c5f4654539ae88e38e6ef44239";
-
-        private readonly IHttpClientFactory _httpClientFactory;
-
-        public DingTalkRobotController(IHttpClientFactory httpClientFactory)
-        {
-            _httpClientFactory = httpClientFactory;
-        }
+        private string WebHook_Token { get; set; } = "";
 
         #region 多种消息类型
+
         /// <summary>
         /// 调用钉钉机器人发送文本内容
         /// </summary>
-        /// <param name="FromTypes">来源于</param>
+        /// <param name="Access_Token">来源于</param>
         /// <returns></returns>
-        [HttpPost("TextContent/{FromTypes}")]
-        public async Task<ActionResult> TextContent(int FromTypes)
+        public async Task<IActionResult> Send([FromQuery]string Access_Token)
+        {
+            var WHMiddlewareService = Ioc.Create<IWHMiddlewareService>();
+            var WHLogsService = Ioc.Create<IWHLogsService>();
+
+            var model = await WHMiddlewareService.GetByToken(Access_Token);
+
+            if (model == null)
+            {
+                return Fail("指定的数据不存在");
+            }
+
+            WebHook_Token = model.PushUrl;
+            if (!model.PushUrl.Contains("access_token") && !model.PushToken.IsNullOrEmpty())
+            {
+                WebHook_Token += $"?access_token={model.PushToken}";
+            }
+
+            var content = await Web.GetBodyAsync();
+
+            if (!content.IsNullOrEmpty())
+            {
+                var modelwhlogs = new WHLogsDto();
+                modelwhlogs.WHTypes = true;
+                modelwhlogs.Content = content;
+                modelwhlogs.CreationTime = DateTime.Now;
+                await WHLogsService.CreateAsync(modelwhlogs);
+            }
+
+            switch (model.Source)
+            {
+                case 1:
+                    {
+                        //消息类型
+                        var msgtype = MsgTypeEnum.actionCard.ToString();
+
+                        //actionCard内容
+                        var actionCard = new ActionCard
+                        {
+                            Text = "### 乔布斯 20 年前想打造的苹果咖啡厅 " +
+                                    "Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划 @18307555593",
+                            Title = "极思灵创WebHook中转器-腾讯开发者平台",
+                            HideAvatar = "0",
+                            BtnOrientation = "0",
+                            SingleTitle = "查看详情",
+                            SingleURL = "https://www.dingtalk.com/"
+                        };
+
+                        //指定目标人群
+                        var at = new At()
+                        {
+                            AtMobiles = new List<string>() { "18307555593" },
+                            IsAtAll = false
+                        };
+
+                        var response = await SendDingTalkMessage(new { msgtype, actionCard, at });
+
+                        return Ok(response);
+                    }
+
+                case 2:
+
+                case 3:
+
+                default:
+                    {
+                        //消息类型
+                        var msgtype = MsgTypeEnum.markdown.ToString();
+
+                        //markdown内容
+                        var markdown = new MarkDown
+                        {
+                            Text = "#### 长沙天气 @18307555593\n" +
+                                         "> 8度，西北风3级，空气优16，相对湿度100%\n\n" +
+                                         "> ![screenshot](https://gw.alipayobjects.com/zos/skylark-tools/public/files/84111bbeba74743d2771ed4f062d1f25.png)\n" +
+                                         "> ###### 15点03分发布 [天气](https://www.seniverse.com/) \n",
+                            Title = "长沙天气"
+                        };
+
+                        //指定目标人群
+                        var at = new At()
+                        {
+                            AtMobiles = new List<string>() { "18307555593" },
+                            IsAtAll = false
+                        };
+
+                        var response = await SendDingTalkMessage(new { msgtype, markdown, at });
+
+                        return Ok(response);
+                    }
+            }
+        }
+
+        /// <summary>
+        /// 调用钉钉机器人发送文本内容
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ActionResult> TextContent()
         {
             //消息类型
             var msgtype = MsgTypeEnum.text.ToString();
@@ -211,7 +309,7 @@ namespace GitDC.Controllers
         /// <summary>
         /// 执行发送消息
         /// </summary>
-        /// <param name="sendMessage"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         private async Task<HttpResponseMessage> SendDingTalkMessage(object value)
         {
@@ -223,7 +321,9 @@ namespace GitDC.Controllers
                 Content = new StringContent(sendMessage, Encoding.UTF8, "application/json")
             };
 
-            var client = _httpClientFactory.CreateClient();
+            var HttpClientFactory = Ioc.Create<IHttpClientFactory>();
+
+            var client = HttpClientFactory.CreateClient();
             var response = await client.SendAsync(request);
 
             return response;

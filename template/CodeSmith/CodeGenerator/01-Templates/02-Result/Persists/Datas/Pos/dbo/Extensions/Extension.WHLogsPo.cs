@@ -27,7 +27,6 @@ namespace GitDC.Data.Pos.dbo.Extensions {
             return new WHLogs( po.Id ) {
                 WHTypes = po.WHTypes,
                 Content = po.Content,
-                CreatId = po.CreatId,
                 CreationTime = po.CreationTime,
                 IsDeleted = po.IsDeleted,
                 Version = po.Version,
@@ -55,7 +54,6 @@ namespace GitDC.Data.Pos.dbo.Extensions {
                 Id = entity.Id,
                 WHTypes = entity.WHTypes,
                 Content = entity.Content,
-                CreatId = entity.CreatId,
                 CreationTime = entity.CreationTime,
                 IsDeleted = entity.IsDeleted,
                 Version = entity.Version,

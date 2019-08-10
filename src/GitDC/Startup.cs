@@ -317,6 +317,9 @@ namespace GitDC
 
             services.AddMiniProfiler(options => options.RouteBasePath = "/profiler");  //使用"/profiler/results"来访问分析报告
 
+            //注册IHttpClientFactory
+            services.AddHttpClient();
+
             //添加Ding基础设施服务
             return services.AddDing();
         }

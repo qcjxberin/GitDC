@@ -14,19 +14,15 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id = "c9236b5d-c905-4476-8644-88a468398eab".ToGuid();
+        public static readonly Guid Id = "edd29716-2c9b-470c-ba8f-331a64cf593a".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
-        public static readonly string WHTypes = "WHTypes";
+        public static readonly bool WHTypes = true;
         /// <summary>
         /// 推送内容
         /// </summary>
         public static readonly string Content = "Content";
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        public static readonly int? CreatId = 1;
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -47,19 +43,15 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id2 = "871713e7-0b27-439f-8739-8bdfd0ea0416".ToGuid();
+        public static readonly Guid Id2 = "deb41dac-b081-40ce-a0cd-947bae544eaa".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
-        public static readonly string WHTypes2 = "WHTypes2";
+        public static readonly bool WHTypes2 = true;
         /// <summary>
         /// 推送内容
         /// </summary>
         public static readonly string Content2 = "Content2";
-        /// <summary>
-        /// 创建人编号
-        /// </summary>
-        public static readonly int? CreatId2 = 2;
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -84,7 +76,6 @@ namespace GitDC.Test.Models.dbo {
             return new WHLogs( id.ToGuid() ) {
                 WHTypes = WHTypes,
                 Content = Content,
-                CreatId = CreatId,
                 CreationTime = CreationTime,
                 IsDeleted = IsDeleted,
                 Version = Version,
@@ -99,7 +90,6 @@ namespace GitDC.Test.Models.dbo {
             return new WHLogs( id.ToGuid() ) {
                 WHTypes = WHTypes2,
                 Content = Content2,
-                CreatId = CreatId2,
                 CreationTime = CreationTime2,
                 IsDeleted = IsDeleted2,
                 Version = Version2,

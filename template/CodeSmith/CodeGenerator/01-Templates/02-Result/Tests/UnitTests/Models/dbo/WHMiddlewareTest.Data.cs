@@ -14,19 +14,27 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id = "1ab2db0e-d8f3-4792-9f60-059a0e88d96c".ToGuid();
+        public static readonly Guid Id = "1c7de506-2e93-479e-b74c-47bd2639b412".ToGuid();
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public static readonly string Name = "Name";
+        /// <summary>
+        /// 介绍
+        /// </summary>
+        public static readonly string Summary = "Summary";
         /// <summary>
         /// 令牌
         /// </summary>
         public static readonly string Token = "Token";
         /// <summary>
-        /// 1.腾讯云开发者中心项目
+        /// 1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea
         /// </summary>
-        public static readonly short? Source = "Source";
+        public static readonly short Source = "Source";
         /// <summary>
-        /// 1.钉钉
+        /// 1.钉钉，2为企业微信
         /// </summary>
-        public static readonly short? Push = "Push";
+        public static readonly short Push = "Push";
         /// <summary>
         /// 推送Url
         /// </summary>
@@ -67,19 +75,27 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id2 = "a89fdc93-1eac-438c-9df3-5dff02ec1b5f".ToGuid();
+        public static readonly Guid Id2 = "05d44799-e40f-4162-88b3-919b0cffbb85".ToGuid();
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public static readonly string Name2 = "Name2";
+        /// <summary>
+        /// 介绍
+        /// </summary>
+        public static readonly string Summary2 = "Summary2";
         /// <summary>
         /// 令牌
         /// </summary>
         public static readonly string Token2 = "Token2";
         /// <summary>
-        /// 1.腾讯云开发者中心项目
+        /// 1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea
         /// </summary>
-        public static readonly short? Source2 = "Source2";
+        public static readonly short Source2 = "Source2";
         /// <summary>
-        /// 1.钉钉
+        /// 1.钉钉，2为企业微信
         /// </summary>
-        public static readonly short? Push2 = "Push2";
+        public static readonly short Push2 = "Push2";
         /// <summary>
         /// 推送Url
         /// </summary>
@@ -122,6 +138,8 @@ namespace GitDC.Test.Models.dbo {
         /// </summary>
         public static WHMiddleware Create(string id = "") {
             return new WHMiddleware( id.ToGuid() ) {
+                Name = Name,
+                Summary = Summary,
                 Token = Token,
                 Source = Source,
                 Push = Push,
@@ -142,6 +160,8 @@ namespace GitDC.Test.Models.dbo {
         /// <param name="id">网络勾子中转表编号</param>
         public static WHMiddleware Create2( string id = "" ) {
             return new WHMiddleware( id.ToGuid() ) {
+                Name = Name2,
+                Summary = Summary2,
                 Token = Token2,
                 Source = Source2,
                 Push = Push2,

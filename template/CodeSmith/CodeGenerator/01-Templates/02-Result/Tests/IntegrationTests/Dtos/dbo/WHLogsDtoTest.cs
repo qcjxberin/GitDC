@@ -43,7 +43,6 @@ namespace GitDC.Test.Integration.Dtos.dbo {
             Assert.Equal( WHLogsTest.Id.ToString(),dto.Id );
             Assert.Equal( WHLogsTest.WHTypes,dto.WHTypes );
             Assert.Equal( WHLogsTest.Content,dto.Content );
-            Assert.Equal( WHLogsTest.CreatId,dto.CreatId );
             Assert.Equal( WHLogsTest.CreationTime,dto.CreationTime );
             Assert.Equal( WHLogsTest.IsDeleted,dto.IsDeleted );
             Assert.Equal( WHLogsTest.Version,dto.Version );
@@ -58,7 +57,6 @@ namespace GitDC.Test.Integration.Dtos.dbo {
             Assert.Equal( WHLogsTest.Id,entity.Id );
             Assert.Equal( WHLogsTest.WHTypes,entity.WHTypes );
             Assert.Equal( WHLogsTest.Content,entity.Content );
-            Assert.Equal( WHLogsTest.CreatId,entity.CreatId );
             Assert.Equal( WHLogsTest.CreationTime,entity.CreationTime );
             Assert.Equal( WHLogsTest.IsDeleted,entity.IsDeleted );
             Assert.Equal( WHLogsTest.Version,entity.Version );

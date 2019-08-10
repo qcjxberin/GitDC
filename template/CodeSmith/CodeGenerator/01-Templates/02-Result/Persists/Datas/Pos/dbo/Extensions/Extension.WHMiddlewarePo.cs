@@ -25,6 +25,8 @@ namespace GitDC.Data.Pos.dbo.Extensions {
             if( po == null )
                 return null;
             return new WHMiddleware( po.Id ) {
+                Name = po.Name,
+                Summary = po.Summary,
                 Token = po.Token,
                 Source = po.Source,
                 Push = po.Push,
@@ -58,6 +60,8 @@ namespace GitDC.Data.Pos.dbo.Extensions {
                 return null;
             return new WHMiddlewarePo {
                 Id = entity.Id,
+                Name = entity.Name,
+                Summary = entity.Summary,
                 Token = entity.Token,
                 Source = entity.Source,
                 Push = entity.Push,

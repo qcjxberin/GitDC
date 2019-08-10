@@ -17,10 +17,6 @@ export class WHLogsQuery extends QueryParameter {
      */
     content;
     /**
-     * 创建人编号
-     */
-    creatId;
-    /**
      * 起始创建时间
      */
     beginCreationTime;

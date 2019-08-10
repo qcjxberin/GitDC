@@ -14,6 +14,26 @@ namespace GitDC.Service.Queries.dbo {
         [Display( Name = "编号" )]
         public Guid? Id { get; set; }
         
+        private string _name = string.Empty;
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [Display( Name = "名称" )]
+        public string Name {
+            get => _name == null ? string.Empty : _name.Trim();
+            set => _name = value;
+        }
+        
+        private string _summary = string.Empty;
+        /// <summary>
+        /// 介绍
+        /// </summary>
+        [Display( Name = "介绍" )]
+        public string Summary {
+            get => _summary == null ? string.Empty : _summary.Trim();
+            set => _summary = value;
+        }
+        
         private string _token = string.Empty;
         /// <summary>
         /// 令牌
@@ -24,14 +44,14 @@ namespace GitDC.Service.Queries.dbo {
             set => _token = value;
         }
         /// <summary>
-        /// 1.腾讯云开发者中心项目
+        /// 1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea
         /// </summary>
-        [Display( Name = "1.腾讯云开发者中心项目" )]
+        [Display( Name = "1.腾讯云开发者中心项目，2为禅道，3为码云，4为Gogs，5为Gitea" )]
         public short? Source { get; set; }
         /// <summary>
-        /// 1.钉钉
+        /// 1.钉钉，2为企业微信
         /// </summary>
-        [Display( Name = "1.钉钉" )]
+        [Display( Name = "1.钉钉，2为企业微信" )]
         public short? Push { get; set; }
         
         private string _pushUrl = string.Empty;
