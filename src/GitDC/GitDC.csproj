@@ -38,16 +38,16 @@
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
-    <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Offices.Excels.Npoi" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Schedulers" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190804-01" />
-    <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190804-01" />
+    <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Offices.Excels.Npoi" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Schedulers" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190808-01" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.MiddlewareAnalysis" Version="2.2.0" />
