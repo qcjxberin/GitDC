@@ -1,4 +1,5 @@
-﻿using GitDC.Common;
+﻿using Ding.Webs.Controllers;
+using GitDC.Common;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace GitDC.Controllers
     /// <summary>
     /// 与钉钉机器人交互
     /// </summary>
-    public class DingTalkRobotController : Controller
+    public class DingTalkRobotController : WebControllerBase
     {
-        private readonly string WebHook_Token = "https://oapi.dingtalk.com/robot/send?access_token=86885a495bf6cbfa4b8eae6e804988fae9857f39e35af6bdd580bf19047b26bf";
+        private readonly string WebHook_Token = "https://oapi.dingtalk.com/robot/send?access_token=542ac7c0ee4546c36581eed3873270ecd86cc0c5f4654539ae88e38e6ef44239";
 
         private readonly IHttpClientFactory _httpClientFactory;
 
@@ -26,9 +27,10 @@ namespace GitDC.Controllers
         /// <summary>
         /// 调用钉钉机器人发送文本内容
         /// </summary>
+        /// <param name="FromTypes">来源于</param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<ActionResult> TextContent()
+        [HttpPost("TextContent/{FromTypes}")]
+        public async Task<ActionResult> TextContent(int FromTypes)
         {
             //消息类型
             var msgtype = MsgTypeEnum.text.ToString();
