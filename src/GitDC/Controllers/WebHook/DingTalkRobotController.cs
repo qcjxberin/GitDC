@@ -13,6 +13,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using AngleSharp.Html.Parser;
+using System.Linq;
+using Ding.Collections;
 
 namespace GitDC.Controllers
 {
@@ -66,16 +71,36 @@ namespace GitDC.Controllers
                         //消息类型
                         var msgtype = MsgTypeEnum.actionCard.ToString();
 
+                        var modelContent = JObject.Parse(content);
+                        var repository = modelContent["repository"];
+
+                        var repositorychild = repository.Children().OfType<JProperty>()
+                            .ToDictionary(p => p.Name, p => p.Value);
+
+                        XTrace.UseConsole();
+                        XTrace.WriteLine(repositorychild.ToJson());
+
+                        var parser = new HtmlParser();
+                        var document = await parser.ParseDocumentAsync(repositorychild["html_url"].ToString());
+                        var html_url = document.QuerySelector("a").GetAttribute("href");
+
+                        var build = Pool.StringBuilder.Get();
+
+
+
+                        build.Append("");
+
                         //actionCard内容
                         var actionCard = new ActionCard
                         {
-                            Text = "### 乔布斯 20 年前想打造的苹果咖啡厅 " +
-                                    "Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划 @18307555593",
+                            
+
+                        Text = "# Repo Push Event\n- Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593",
                             Title = "极思灵创WebHook中转器-腾讯开发者平台",
                             HideAvatar = "0",
                             BtnOrientation = "0",
                             SingleTitle = "查看详情",
-                            SingleURL = "https://www.dingtalk.com/"
+                            SingleURL = html_url
                         };
 
                         //指定目标人群
