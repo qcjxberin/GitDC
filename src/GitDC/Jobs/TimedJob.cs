@@ -15,7 +15,6 @@ namespace DCLiGongBang.Jobs
         [Invoke(Interval = 1000 * 10, SkipWhileExecuting = true, IsEnabled = true)]
         public async Task TimedTest()
         {
-
             await Task.FromResult(0);
         }
     }

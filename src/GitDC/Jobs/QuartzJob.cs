@@ -6,6 +6,7 @@ using Ding.Schedulers.Quartz;
 using Quartz;
 using System;
 using System.Threading.Tasks;
+using Ding.Log;
 
 namespace GitDC.Jobs
 {
@@ -31,10 +32,9 @@ namespace GitDC.Jobs
             {
                 Console.WriteLine("正常");
             }
-
             try
             {
-                //var service = scope.Create<IBspLoginfaillogsService>();
+                //var service = scope.Create<IUsersService>();
                 //Console.WriteLine("测试测试" + (await service.GetAllAsync()).Count);
                 //var BspBannedipsService = scope.Create<IBspBannedipsService>();
                 //Console.WriteLine("测试测试" + (await BspBannedipsService.CheckIP(Web.Ip)));

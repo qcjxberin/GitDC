@@ -143,7 +143,7 @@ namespace GitDC
             services.AddCsrfToken();
 
             //添加EF工作单元
-            switch (Configuration["Data:Provider"])
+            switch (SiteSetting.Current.DataProvider)
             {
                 case "MSSQL2012":
                     //====== 支持Sql Server 2012+ ==========

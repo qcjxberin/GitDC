@@ -12,7 +12,7 @@ namespace GitDC.Common
     {
         /// <summary>网站域名</summary>
         [Description("网站域名")]
-        public string Url { get; set; } = "http://localhost:9090";
+        public string Url { get; set; } = "http://localhost:7070";
 
         /// <summary>数据库类型：MSSQL2005, MSSQL2012, MySQL, PostgreSQL, Oracle, Sqlite</summary>
         [Description("数据库类型：MSSQL2005, MSSQL2012, MySQL, PostgreSQL, Oracle, Sqlite")]
