@@ -34,11 +34,31 @@ namespace GitDC.Domain.Models {
         [Column( "WHTypes" )]
         public bool WHTypes { get; set; }
         /// <summary>
+        /// 请求头部
+        /// </summary>
+        [DisplayName( "请求头部" )]
+        [StringLength( 2000, ErrorMessage = "请求头部输入过长，不能超过2000位" )]
+        [Column( "RequestTop" )]
+        public string RequestTop { get; set; }
+        /// <summary>
         /// 推送内容
         /// </summary>
         [DisplayName( "推送内容" )]
         [Column( "Content" )]
         public string Content { get; set; }
+        /// <summary>
+        /// 响应头部
+        /// </summary>
+        [DisplayName( "响应头部" )]
+        [StringLength( 2000, ErrorMessage = "响应头部输入过长，不能超过2000位" )]
+        [Column( "ResponseTop" )]
+        public string ResponseTop { get; set; }
+        /// <summary>
+        /// 响应内容
+        /// </summary>
+        [DisplayName( "响应内容" )]
+        [Column( "ResponseContent" )]
+        public string ResponseContent { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -58,7 +78,10 @@ namespace GitDC.Domain.Models {
         protected override void AddDescriptions() {
             AddDescription( t => t.Id );
             AddDescription( t => t.WHTypes );
+            AddDescription( t => t.RequestTop );
             AddDescription( t => t.Content );
+            AddDescription( t => t.ResponseTop );
+            AddDescription( t => t.ResponseContent );
             AddDescription( t => t.CreationTime );
         }
         
@@ -68,7 +91,10 @@ namespace GitDC.Domain.Models {
         protected override void AddChanges( WHLogs other ) {
             AddChange( t => t.Id, other.Id );
             AddChange( t => t.WHTypes, other.WHTypes );
+            AddChange( t => t.RequestTop, other.RequestTop );
             AddChange( t => t.Content, other.Content );
+            AddChange( t => t.ResponseTop, other.ResponseTop );
+            AddChange( t => t.ResponseContent, other.ResponseContent );
             AddChange( t => t.CreationTime, other.CreationTime );
         }
     }

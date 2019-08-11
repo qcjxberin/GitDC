@@ -332,10 +332,28 @@
               "notNull": true
             },
             {
+              "name": "RequestTop",
+              "type": "String2000",
+              "remark": "",
+              "chnname": "请求头部"
+            },
+            {
               "name": "Content",
               "type": "LongText",
               "remark": "",
               "chnname": "推送内容"
+            },
+            {
+              "name": "ResponseTop",
+              "type": "String2000",
+              "remark": "",
+              "chnname": "响应头部"
+            },
+            {
+              "name": "ResponseContent",
+              "type": "LongText",
+              "remark": "",
+              "chnname": "响应内容"
             },
             {
               "name": "CreationTime",

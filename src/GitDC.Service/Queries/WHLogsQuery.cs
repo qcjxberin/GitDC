@@ -19,6 +19,16 @@ namespace GitDC.Service.Queries.dbo {
         [Display( Name = "是为中转，否为非中转" )]
         public bool? WHTypes { get; set; }
         
+        private string _requestTop = string.Empty;
+        /// <summary>
+        /// 请求头部
+        /// </summary>
+        [Display( Name = "请求头部" )]
+        public string RequestTop {
+            get => _requestTop == null ? string.Empty : _requestTop.Trim();
+            set => _requestTop = value;
+        }
+        
         private string _content = string.Empty;
         /// <summary>
         /// 推送内容
@@ -27,6 +37,26 @@ namespace GitDC.Service.Queries.dbo {
         public string Content {
             get => _content == null ? string.Empty : _content.Trim();
             set => _content = value;
+        }
+        
+        private string _responseTop = string.Empty;
+        /// <summary>
+        /// 响应头部
+        /// </summary>
+        [Display( Name = "响应头部" )]
+        public string ResponseTop {
+            get => _responseTop == null ? string.Empty : _responseTop.Trim();
+            set => _responseTop = value;
+        }
+        
+        private string _responseContent = string.Empty;
+        /// <summary>
+        /// 响应内容
+        /// </summary>
+        [Display( Name = "响应内容" )]
+        public string ResponseContent {
+            get => _responseContent == null ? string.Empty : _responseContent.Trim();
+            set => _responseContent = value;
         }
         /// <summary>
         /// 起始创建时间

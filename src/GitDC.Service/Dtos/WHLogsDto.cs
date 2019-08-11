@@ -16,11 +16,31 @@ namespace GitDC.Service.Dtos.dbo {
         [Display( Name = "是为中转，否为非中转" )]
         public bool? WHTypes { get; set; }
         /// <summary>
+        /// 请求头部
+        /// </summary>
+        [StringLength( 2000, ErrorMessage = "请求头部输入过长，不能超过2000位" )]
+        [Column( "RequestTop" )]
+        [Display( Name = "请求头部" )]
+        public string RequestTop { get; set; }
+        /// <summary>
         /// 推送内容
         /// </summary>
         [Column( "Content" )]
         [Display( Name = "推送内容" )]
         public string Content { get; set; }
+        /// <summary>
+        /// 响应头部
+        /// </summary>
+        [StringLength( 2000, ErrorMessage = "响应头部输入过长，不能超过2000位" )]
+        [Column( "ResponseTop" )]
+        [Display( Name = "响应头部" )]
+        public string ResponseTop { get; set; }
+        /// <summary>
+        /// 响应内容
+        /// </summary>
+        [Column( "ResponseContent" )]
+        [Display( Name = "响应内容" )]
+        public string ResponseContent { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>

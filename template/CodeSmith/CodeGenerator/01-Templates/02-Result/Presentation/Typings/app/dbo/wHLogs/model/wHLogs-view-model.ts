@@ -9,9 +9,21 @@ export class WHLogsViewModel extends ViewModel {
      */
     wHTypes;
     /**
+     * 请求头部
+     */
+    requestTop;
+    /**
      * 推送内容
      */
     content;
+    /**
+     * 响应头部
+     */
+    responseTop;
+    /**
+     * 响应内容
+     */
+    responseContent;
     /**
      * 创建时间
      */

@@ -14,15 +14,27 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id = "edd29716-2c9b-470c-ba8f-331a64cf593a".ToGuid();
+        public static readonly Guid Id = "f2e521d3-0dfa-48e9-b66f-d48177f55e86".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
         public static readonly bool WHTypes = true;
         /// <summary>
+        /// 请求头部
+        /// </summary>
+        public static readonly string RequestTop = "RequestTop";
+        /// <summary>
         /// 推送内容
         /// </summary>
         public static readonly string Content = "Content";
+        /// <summary>
+        /// 响应头部
+        /// </summary>
+        public static readonly string ResponseTop = "ResponseTop";
+        /// <summary>
+        /// 响应内容
+        /// </summary>
+        public static readonly string ResponseContent = "ResponseContent";
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -43,15 +55,27 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id2 = "deb41dac-b081-40ce-a0cd-947bae544eaa".ToGuid();
+        public static readonly Guid Id2 = "b4995095-dfc5-485c-ba1b-ef681c8c5e0e".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
         public static readonly bool WHTypes2 = true;
         /// <summary>
+        /// 请求头部
+        /// </summary>
+        public static readonly string RequestTop2 = "RequestTop2";
+        /// <summary>
         /// 推送内容
         /// </summary>
         public static readonly string Content2 = "Content2";
+        /// <summary>
+        /// 响应头部
+        /// </summary>
+        public static readonly string ResponseTop2 = "ResponseTop2";
+        /// <summary>
+        /// 响应内容
+        /// </summary>
+        public static readonly string ResponseContent2 = "ResponseContent2";
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -75,7 +99,10 @@ namespace GitDC.Test.Models.dbo {
         public static WHLogs Create(string id = "") {
             return new WHLogs( id.ToGuid() ) {
                 WHTypes = WHTypes,
+                RequestTop = RequestTop,
                 Content = Content,
+                ResponseTop = ResponseTop,
+                ResponseContent = ResponseContent,
                 CreationTime = CreationTime,
                 IsDeleted = IsDeleted,
                 Version = Version,
@@ -89,7 +116,10 @@ namespace GitDC.Test.Models.dbo {
         public static WHLogs Create2( string id = "" ) {
             return new WHLogs( id.ToGuid() ) {
                 WHTypes = WHTypes2,
+                RequestTop = RequestTop2,
                 Content = Content2,
+                ResponseTop = ResponseTop2,
+                ResponseContent = ResponseContent2,
                 CreationTime = CreationTime2,
                 IsDeleted = IsDeleted2,
                 Version = Version2,
