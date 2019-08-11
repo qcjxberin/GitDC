@@ -78,7 +78,6 @@ namespace GitDC.Controllers
                             .ToDictionary(p => p.Name, p => p.Value);
 
                         XTrace.UseConsole();
-                        XTrace.WriteLine(repositorychild.ToJson());
 
                         var parser = new HtmlParser();
                         var document = await parser.ParseDocumentAsync(repositorychild["html_url"].ToString());
@@ -86,9 +85,10 @@ namespace GitDC.Controllers
 
                         var build = Pool.StringBuilder.Get();
 
-
+                        var Event = HttpContext.Request.Headers["X-Coding-Event"];
 
                         build.Append("");
+                        XTrace.WriteLine(Event);
 
                         //actionCard内容
                         var actionCard = new ActionCard
