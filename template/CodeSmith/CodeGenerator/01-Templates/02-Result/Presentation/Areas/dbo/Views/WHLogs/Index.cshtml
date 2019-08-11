@@ -4,7 +4,16 @@
     .mat-column-wHTypes {
         max-width: 80px;
     }
+    .mat-column-requestTop {
+        max-width: 20%;
+    }
     .mat-column-content {
+        max-width: 20%;
+    }
+    .mat-column-responseTop {
+        max-width: 20%;
+    }
+    .mat-column-responseContent {
         max-width: 20%;
     }
     .mat-column-creationTime {
@@ -36,7 +45,10 @@
     <util-table-column type="Checkbox"></util-table-column>
     <util-table-column type="LineNumber"></util-table-column>
     <util-table-column for="WHTypes" sort="true"></util-table-column>
+    <util-table-column for="RequestTop" sort="true"></util-table-column>
     <util-table-column for="Content" sort="true"></util-table-column>
+    <util-table-column for="ResponseTop" sort="true"></util-table-column>
+    <util-table-column for="ResponseContent" sort="true"></util-table-column>
     <util-table-column for="CreationTime" sort="true"></util-table-column>
     <util-table-column title="操作" column="operation">
         <util-table-cell>

@@ -13,9 +13,21 @@ namespace GitDC.Data.Pos.dbo{
         /// </summary>  
         public bool WHTypes { get; set; }
         /// <summary>
+        /// 请求头部
+        /// </summary>  
+        public string RequestTop { get; set; }
+        /// <summary>
         /// 推送内容
         /// </summary>  
         public string Content { get; set; }
+        /// <summary>
+        /// 响应头部
+        /// </summary>  
+        public string ResponseTop { get; set; }
+        /// <summary>
+        /// 响应内容
+        /// </summary>  
+        public string ResponseContent { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>  

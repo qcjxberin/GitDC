@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using AngleSharp.Html.Parser;
 using System.Linq;
@@ -53,12 +52,19 @@ namespace GitDC.Controllers
                 WebHook_Token += $"?access_token={model.PushToken}";
             }
 
+            var dic = new Dictionary<string, string>();
+            foreach(var row in HttpContext.Request.Headers)
+            {
+                dic.Add(row.Key, row.Value);
+            }
+
             var content = await Web.GetBodyAsync();
 
             if (!content.IsNullOrEmpty())
             {
                 var modelwhlogs = new WHLogsDto();
                 modelwhlogs.WHTypes = true;
+                modelwhlogs.RequestTop = dic.ToJson();
                 modelwhlogs.Content = content;
                 modelwhlogs.CreationTime = DateTime.Now;
                 await WHLogsService.CreateAsync(modelwhlogs);
@@ -86,16 +92,22 @@ namespace GitDC.Controllers
 
                         var build = Pool.StringBuilder.Get();
 
+                        if (dic.ContainsKey("X-Coding-Event"))
+                        {
+                            if (dic["X-Coding-Event"] == "push")
+                            {
+                                build.Append("# Repo Push Event\n-");
+                            }
+                        }
 
-
-                        build.Append("");
+                        build.Append("# Repo Push Event\n- Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593");
 
                         //actionCard内容
                         var actionCard = new ActionCard
                         {
                             
 
-                        Text = "# Repo Push Event\n- Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593",
+                        Text = build.Put(true),
                             Title = "极思灵创WebHook中转器-腾讯开发者平台",
                             HideAvatar = "0",
                             BtnOrientation = "0",

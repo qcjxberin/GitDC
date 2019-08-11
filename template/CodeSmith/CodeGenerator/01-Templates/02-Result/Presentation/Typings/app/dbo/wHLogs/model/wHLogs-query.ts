@@ -13,9 +13,21 @@ export class WHLogsQuery extends QueryParameter {
      */
     wHTypes;
     /**
+     * 请求头部
+     */
+    requestTop;
+    /**
      * 推送内容
      */
     content;
+    /**
+     * 响应头部
+     */
+    responseTop;
+    /**
+     * 响应内容
+     */
+    responseContent;
     /**
      * 起始创建时间
      */
