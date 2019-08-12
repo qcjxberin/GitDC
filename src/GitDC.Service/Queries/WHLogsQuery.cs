@@ -58,6 +58,16 @@ namespace GitDC.Service.Queries.dbo {
             get => _responseContent == null ? string.Empty : _responseContent.Trim();
             set => _responseContent = value;
         }
+        
+        private string _responseBody = string.Empty;
+        /// <summary>
+        /// 响应结果
+        /// </summary>
+        [Display( Name = "响应结果" )]
+        public string ResponseBody {
+            get => _responseBody == null ? string.Empty : _responseBody.Trim();
+            set => _responseBody = value;
+        }
         /// <summary>
         /// 起始创建时间
         /// </summary>

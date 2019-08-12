@@ -356,6 +356,12 @@
               "chnname": "响应内容"
             },
             {
+              "name": "ResponseBody",
+              "type": "String2000",
+              "remark": "",
+              "chnname": "响应结果"
+            },
+            {
               "name": "CreationTime",
               "type": "DateTime",
               "remark": "",

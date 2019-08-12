@@ -44,6 +44,13 @@ namespace GitDC.Service.Dtos.dbo {
         [Display( Name = "响应内容" )]
         public string ResponseContent { get; set; }
         /// <summary>
+        /// 响应结果
+        /// </summary>
+        [StringLength( 2000, ErrorMessage = "响应结果输入过长，不能超过2000位" )]
+        [Column( "ResponseBody" )]
+        [Display( Name = "响应结果" )]
+        public string ResponseBody { get; set; }
+        /// <summary>
         /// 创建时间
         /// </summary>
         [Column( "CreationTime" )]

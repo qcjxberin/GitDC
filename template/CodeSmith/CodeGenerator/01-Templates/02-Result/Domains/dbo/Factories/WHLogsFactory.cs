@@ -15,6 +15,7 @@ namespace GitDC.Domains.Factories {
         /// <param name="content">推送内容</param>
         /// <param name="responseTop">响应头部</param>
         /// <param name="responseContent">响应内容</param>
+        /// <param name="responseBody">响应结果</param>
         /// <param name="creationTime">创建时间</param>
         /// <param name="isDeleted">软删除，数据不会被物理删除</param>
         /// <param name="version">处理并发问题</param>
@@ -25,6 +26,7 @@ namespace GitDC.Domains.Factories {
             string content,
             string responseTop,
             string responseContent,
+            string responseBody,
             DateTime? creationTime,
             bool isDeleted,
             Byte[] version
@@ -36,6 +38,7 @@ namespace GitDC.Domains.Factories {
             result.Content = content;
             result.ResponseTop = responseTop;
             result.ResponseContent = responseContent;
+            result.ResponseBody = responseBody;
             result.CreationTime = creationTime;
             result.IsDeleted = isDeleted;
             result.Version = version;

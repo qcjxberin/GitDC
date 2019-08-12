@@ -29,6 +29,10 @@ namespace GitDC.Data.Pos.dbo{
         /// </summary>  
         public string ResponseContent { get; set; }
         /// <summary>
+        /// 响应结果
+        /// </summary>  
+        public string ResponseBody { get; set; }
+        /// <summary>
         /// 创建时间
         /// </summary>  
         public DateTime? CreationTime { get; set; }

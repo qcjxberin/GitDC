@@ -29,6 +29,10 @@ export class WHLogsQuery extends QueryParameter {
      */
     responseContent;
     /**
+     * 响应结果
+     */
+    responseBody;
+    /**
      * 起始创建时间
      */
     beginCreationTime;

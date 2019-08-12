@@ -30,6 +30,7 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
                 Content = dto.Content,
                 ResponseTop = dto.ResponseTop,
                 ResponseContent = dto.ResponseContent,
+                ResponseBody = dto.ResponseBody,
                 CreationTime = dto.CreationTime,
                     IsDeleted = dto.IsDeleted.SafeValue(),
                 Version = dto.Version,
@@ -62,6 +63,9 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        responseContent : dto.ResponseContent,
+        //        
+        //        
+        //        responseBody : dto.ResponseBody,
         //        
         //        
         //        creationTime : dto.CreationTime,
@@ -111,6 +115,9 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        ResponseContent = entity.ResponseContent,
+        //        
+        //        
+        //        ResponseBody = entity.ResponseBody,
         //        
         //        
         //        CreationTime = entity.CreationTime,

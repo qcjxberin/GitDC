@@ -25,6 +25,10 @@ export class WHLogsViewModel extends ViewModel {
      */
     responseContent;
     /**
+     * 响应结果
+     */
+    responseBody;
+    /**
      * 创建时间
      */
     creationTime;

@@ -62,6 +62,13 @@ namespace GitDC.Domain.Models {
         [Column( "ResponseContent" )]
         public string ResponseContent { get; set; }
         /// <summary>
+        /// 响应结果
+        /// </summary>
+        [DisplayName( "响应结果" )]
+        [StringLength( 2000, ErrorMessage = "响应结果输入过长，不能超过2000位" )]
+        [Column( "ResponseBody" )]
+        public string ResponseBody { get; set; }
+        /// <summary>
         /// 创建时间
         /// </summary>
         [DisplayName( "创建时间" )]
@@ -84,6 +91,7 @@ namespace GitDC.Domain.Models {
             AddDescription( t => t.Content );
             AddDescription( t => t.ResponseTop );
             AddDescription( t => t.ResponseContent );
+            AddDescription( t => t.ResponseBody );
             AddDescription( t => t.CreationTime );
         }
         
@@ -97,6 +105,7 @@ namespace GitDC.Domain.Models {
             AddChange( t => t.Content, other.Content );
             AddChange( t => t.ResponseTop, other.ResponseTop );
             AddChange( t => t.ResponseContent, other.ResponseContent );
+            AddChange( t => t.ResponseBody, other.ResponseBody );
             AddChange( t => t.CreationTime, other.CreationTime );
         }
     }

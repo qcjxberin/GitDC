@@ -59,6 +59,7 @@ namespace GitDC.Controllers
             }
 
             var content = await Web.GetBodyAsync();
+            var Id = "";
 
             if (!content.IsNullOrEmpty())
             {
@@ -67,7 +68,7 @@ namespace GitDC.Controllers
                 modelwhlogs.RequestTop = dic.ToJson();
                 modelwhlogs.Content = content;
                 modelwhlogs.CreationTime = DateTime.Now;
-                await WHLogsService.CreateAsync(modelwhlogs);
+                Id = await WHLogsService.CreateAsync(modelwhlogs);
             }
 
             switch (model.Source)
@@ -83,9 +84,6 @@ namespace GitDC.Controllers
                         var repositorychild = repository.Children().OfType<JProperty>()
                             .ToDictionary(p => p.Name, p => p.Value);
 
-                        XTrace.UseConsole();
-                        XTrace.WriteLine(repositorychild.ToJson());
-
                         var parser = new HtmlParser();
                         var document = await parser.ParseDocumentAsync(repositorychild["html_url"].ToString());
                         var html_url = document.QuerySelector("a").GetAttribute("href");
@@ -96,19 +94,17 @@ namespace GitDC.Controllers
                         {
                             if (dic["X-Coding-Event"] == "push")
                             {
-                                build.Append("# Repo Push Event\n-");
+                                build.Append("# Repo Push Event\n- ");
                             }
                         }
 
-                        build.Append("# Repo Push Event\n- Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593");
+                        build.Append("Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593");
 
                         //actionCard内容
                         var actionCard = new ActionCard
                         {
-                            
-
-                        Text = build.Put(true),
-                            Title = "极思灵创WebHook中转器-腾讯开发者平台",
+                            Text = build.Put(true),
+                            Title = $"推送",
                             HideAvatar = "0",
                             BtnOrientation = "0",
                             SingleTitle = "查看详情",
@@ -123,6 +119,20 @@ namespace GitDC.Controllers
                         };
 
                         var response = await SendDingTalkMessage(new { msgtype, actionCard, at });
+
+                        var modelwhlogs = await WHLogsService.GetByIdAsync(Id);
+                        var dicResponse = new Dictionary<string, string>();
+                        foreach (var row in response.Headers)
+                        {
+                            dicResponse.Add(row.Key, row.Value.Join());
+                        }
+                        modelwhlogs.ResponseTop = dicResponse.ToJson();
+                        modelwhlogs.ResponseContent = await response.Content.ReadAsStringAsync();
+
+                        XTrace.UseConsole();
+                        XTrace.WriteLine(response.ToJson());
+
+                        await WHLogsService.UpdateAsync(modelwhlogs);
 
                         return Ok(response);
                     }

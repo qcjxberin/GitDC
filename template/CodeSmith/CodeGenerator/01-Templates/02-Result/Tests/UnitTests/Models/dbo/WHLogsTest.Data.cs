@@ -14,7 +14,7 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id = "f2e521d3-0dfa-48e9-b66f-d48177f55e86".ToGuid();
+        public static readonly Guid Id = "c71653a7-d9ef-4f26-b508-83aabe3bab4d".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
@@ -36,6 +36,10 @@ namespace GitDC.Test.Models.dbo {
         /// </summary>
         public static readonly string ResponseContent = "ResponseContent";
         /// <summary>
+        /// 响应结果
+        /// </summary>
+        public static readonly string ResponseBody = "ResponseBody";
+        /// <summary>
         /// 创建时间
         /// </summary>
         public static readonly DateTime? CreationTime = "CreationTime";
@@ -55,7 +59,7 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id2 = "b4995095-dfc5-485c-ba1b-ef681c8c5e0e".ToGuid();
+        public static readonly Guid Id2 = "63e56c49-a959-4d78-a473-07eb615d3649".ToGuid();
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
@@ -76,6 +80,10 @@ namespace GitDC.Test.Models.dbo {
         /// 响应内容
         /// </summary>
         public static readonly string ResponseContent2 = "ResponseContent2";
+        /// <summary>
+        /// 响应结果
+        /// </summary>
+        public static readonly string ResponseBody2 = "ResponseBody2";
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -103,6 +111,7 @@ namespace GitDC.Test.Models.dbo {
                 Content = Content,
                 ResponseTop = ResponseTop,
                 ResponseContent = ResponseContent,
+                ResponseBody = ResponseBody,
                 CreationTime = CreationTime,
                 IsDeleted = IsDeleted,
                 Version = Version,
@@ -120,6 +129,7 @@ namespace GitDC.Test.Models.dbo {
                 Content = Content2,
                 ResponseTop = ResponseTop2,
                 ResponseContent = ResponseContent2,
+                ResponseBody = ResponseBody2,
                 CreationTime = CreationTime2,
                 IsDeleted = IsDeleted2,
                 Version = Version2,
