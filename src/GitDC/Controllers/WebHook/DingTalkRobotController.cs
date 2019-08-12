@@ -80,8 +80,13 @@ namespace GitDC.Controllers
 
                         var modelContent = JObject.Parse(content);
                         var repository = modelContent["repository"];
+                        var pusher = modelContent["pusher"];
+                        var Ref = modelContent["ref"].ToString();
+                        var commits = JArray.Parse(modelContent["commits"].ToString());
 
                         var repositorychild = repository.Children().OfType<JProperty>()
+                            .ToDictionary(p => p.Name, p => p.Value);
+                        var pushchild = pusher.Children().OfType<JProperty>()
                             .ToDictionary(p => p.Name, p => p.Value);
 
                         var parser = new HtmlParser();
@@ -89,22 +94,36 @@ namespace GitDC.Controllers
                         var html_url = document.QuerySelector("a").GetAttribute("href");
 
                         var build = Pool.StringBuilder.Get();
+                        var title = "";
 
                         if (dic.ContainsKey("X-Coding-Event"))
                         {
                             if (dic["X-Coding-Event"] == "push")
                             {
                                 build.Append("# Repo Push Event\n- ");
+                                title = $"{pushchild["name"]}提交源码";
                             }
                         }
 
-                        build.Append("Repo: **[test](https://try.gogs.io/qcjxberin/test)**\n- Ref: **[master](https://try.gogs.io/qcjxberin/test/src/master)**\n- Pusher: **qcjxberin**\n## Total 1 commits(s)\n\u003e 0. [efc05d0](https://try.gogs.io/qcjxberin/test/commit/efc05d0399da7a7350672655b2d7d776b743ca92) qcjxberin - Initial commit\n @18307555593");
+                        build.Append($"Repo: **[{repositorychild["name"].ToString()}]({html_url})**\n- Ref: **[{Ref.Substring(Ref.LastIndexOf("/") + 1)}]({html_url}/git/tree/{Ref.Substring(Ref.LastIndexOf("/") + 1)})**\n- Pusher: **{pushchild["name"]}**\n");
+                        build.Append($"## Total {commits.Count} commits(s)\n\u003e ");
+                        var i = 0;
+                        foreach (var item in commits)
+                        {
+                            var author = JObject.Parse(item["author"].ToString());
+                            build.Append($"{i}. [{item["id"].ToString().Substring(0, 7)}]({html_url}/{Ref.Substring(Ref.LastIndexOf("/") + 1)}/commit/{item["id"].ToString()}) {author["name"].ToString()} - {item["message"].ToString()} ");
+                            if (i < commits.Count)
+                            {
+                                build.Append("\u003e ");
+                            }
+                            i++;
+                        }
 
                         //actionCard内容
                         var actionCard = new ActionCard
                         {
                             Text = build.Put(true),
-                            Title = $"推送",
+                            Title = title,
                             HideAvatar = "0",
                             BtnOrientation = "0",
                             SingleTitle = "查看详情",
@@ -128,9 +147,7 @@ namespace GitDC.Controllers
                         }
                         modelwhlogs.ResponseTop = dicResponse.ToJson();
                         modelwhlogs.ResponseContent = await response.Content.ReadAsStringAsync();
-
-                        XTrace.UseConsole();
-                        XTrace.WriteLine(response.ToJson());
+                        modelwhlogs.ResponseBody = response.ToJson();
 
                         await WHLogsService.UpdateAsync(modelwhlogs);
 
