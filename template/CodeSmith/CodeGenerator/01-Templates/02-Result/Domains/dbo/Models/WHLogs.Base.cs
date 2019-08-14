@@ -28,6 +28,13 @@ namespace GitDC.Domain.Models {
         }
 
         /// <summary>
+        /// 勾子编号
+        /// </summary>
+        [DisplayName( "勾子编号" )]
+        [StringLength( 36, ErrorMessage = "勾子编号输入过长，不能超过36位" )]
+        [Column( "WhId" )]
+        public string WhId { get; set; }
+        /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
         [DisplayName( "是为中转，否为非中转" )]
@@ -86,6 +93,7 @@ namespace GitDC.Domain.Models {
         /// </summary>
         protected override void AddDescriptions() {
             AddDescription( t => t.Id );
+            AddDescription( t => t.WhId );
             AddDescription( t => t.WHTypes );
             AddDescription( t => t.RequestTop );
             AddDescription( t => t.Content );
@@ -100,6 +108,7 @@ namespace GitDC.Domain.Models {
         /// </summary>
         protected override void AddChanges( WHLogs other ) {
             AddChange( t => t.Id, other.Id );
+            AddChange( t => t.WhId, other.WhId );
             AddChange( t => t.WHTypes, other.WHTypes );
             AddChange( t => t.RequestTop, other.RequestTop );
             AddChange( t => t.Content, other.Content );

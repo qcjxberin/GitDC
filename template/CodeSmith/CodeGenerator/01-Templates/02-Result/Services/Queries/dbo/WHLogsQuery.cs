@@ -13,6 +13,16 @@ namespace GitDC.Service.Queries.dbo {
         /// </summary>
         [Display( Name = "编号" )]
         public Guid? Id { get; set; }
+        
+        private string _whId = string.Empty;
+        /// <summary>
+        /// 勾子编号
+        /// </summary>
+        [Display( Name = "勾子编号" )]
+        public string WhId {
+            get => _whId == null ? string.Empty : _whId.Trim();
+            set => _whId = value;
+        }
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>

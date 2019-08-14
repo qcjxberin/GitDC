@@ -1,6 +1,9 @@
 ﻿@model WHLogsDto
 
 <style>
+    .mat-column-whId {
+        max-width: 20%;
+    }
     .mat-column-wHTypes {
         max-width: 80px;
     }
@@ -47,6 +50,7 @@
 <util-table id="table_WHLogs" max-height="700" base-url="wHLogs" query-param="queryParam" sort="CreationTime" sort-direction="Desc">
     <util-table-column type="Checkbox"></util-table-column>
     <util-table-column type="LineNumber"></util-table-column>
+    <util-table-column for="WhId" sort="true"></util-table-column>
     <util-table-column for="WHTypes" sort="true"></util-table-column>
     <util-table-column for="RequestTop" sort="true"></util-table-column>
     <util-table-column for="Content" sort="true"></util-table-column>

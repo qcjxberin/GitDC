@@ -10,6 +10,7 @@ namespace GitDC.Domains.Factories {
         /// 创建网络勾子推送内容日志
         /// </summary>
         /// <param name="id">编号</param>
+        /// <param name="whId">勾子编号</param>
         /// <param name="wHTypes">是为中转，否为非中转</param>
         /// <param name="requestTop">请求头部</param>
         /// <param name="content">推送内容</param>
@@ -21,6 +22,7 @@ namespace GitDC.Domains.Factories {
         /// <param name="version">处理并发问题</param>
         public static WHLogs Create( 
             Guid id,
+            string whId,
             bool wHTypes,
             string requestTop,
             string content,
@@ -33,6 +35,7 @@ namespace GitDC.Domains.Factories {
         ) {
             WHLogs result;
             result = new WHLogs( id );
+            result.WhId = whId;
             result.WHTypes = wHTypes;
             result.RequestTop = requestTop;
             result.Content = content;

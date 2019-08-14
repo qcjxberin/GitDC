@@ -5,6 +5,10 @@
  */
 export class WHLogsViewModel extends ViewModel {
     /**
+     * 勾子编号
+     */
+    whId;
+    /**
      * 是为中转，否为非中转
      */
     wHTypes;

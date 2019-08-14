@@ -14,7 +14,11 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id = "c71653a7-d9ef-4f26-b508-83aabe3bab4d".ToGuid();
+        public static readonly Guid Id = "7c409744-0c0a-4e8e-aa94-c64a75b864ab".ToGuid();
+        /// <summary>
+        /// 勾子编号
+        /// </summary>
+        public static readonly string WhId = "WhId";
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
@@ -59,7 +63,11 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly Guid Id2 = "63e56c49-a959-4d78-a473-07eb615d3649".ToGuid();
+        public static readonly Guid Id2 = "f614cf4c-527c-4ef1-9558-e8441617e947".ToGuid();
+        /// <summary>
+        /// 勾子编号
+        /// </summary>
+        public static readonly string WhId2 = "WhId2";
         /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
@@ -106,6 +114,7 @@ namespace GitDC.Test.Models.dbo {
         /// </summary>
         public static WHLogs Create(string id = "") {
             return new WHLogs( id.ToGuid() ) {
+                WhId = WhId,
                 WHTypes = WHTypes,
                 RequestTop = RequestTop,
                 Content = Content,
@@ -124,6 +133,7 @@ namespace GitDC.Test.Models.dbo {
         /// <param name="id">网络勾子推送内容日志编号</param>
         public static WHLogs Create2( string id = "" ) {
             return new WHLogs( id.ToGuid() ) {
+                WhId = WhId2,
                 WHTypes = WHTypes2,
                 RequestTop = RequestTop2,
                 Content = Content2,

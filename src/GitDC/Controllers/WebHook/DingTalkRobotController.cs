@@ -64,10 +64,12 @@ namespace GitDC.Controllers
             if (!content.IsNullOrEmpty())
             {
                 var modelwhlogs = new WHLogsDto();
+                modelwhlogs.WhId = model.Id.ToString();
                 modelwhlogs.WHTypes = true;
                 modelwhlogs.RequestTop = dic.ToJson();
                 modelwhlogs.Content = content;
                 modelwhlogs.CreationTime = DateTime.Now;
+
                 Id = await WHLogsService.CreateAsync(modelwhlogs);
             }
 
@@ -163,14 +165,20 @@ namespace GitDC.Controllers
                         //消息类型
                         var msgtype = MsgTypeEnum.markdown.ToString();
 
+                        var modelContent = JObject.Parse(content);
+                        var text = modelContent["text"].ToString();
+                        if (text.IsNullOrEmpty())
+                        {
+                            return Fail("内容为空");
+                        }
+
+                        var title = text.Split("[")[0];
+
                         //markdown内容
                         var markdown = new MarkDown
                         {
-                            Text = "#### 长沙天气 @18307555593\n" +
-                                         "> 8度，西北风3级，空气优16，相对湿度100%\n\n" +
-                                         "> ![screenshot](https://gw.alipayobjects.com/zos/skylark-tools/public/files/84111bbeba74743d2771ed4f062d1f25.png)\n" +
-                                         "> ###### 15点03分发布 [天气](https://www.seniverse.com/) \n",
-                            Title = "长沙天气"
+                            Text = text,
+                            Title = title
                         };
 
                         //指定目标人群
@@ -194,6 +202,8 @@ namespace GitDC.Controllers
         [HttpGet]
         public async Task<ActionResult> TextContent()
         {
+            WebHook_Token = "https://oapi.dingtalk.com/robot/send?access_token=542ac7c0ee4546c36581eed3873270ecd86cc0c5f4654539ae88e38e6ef44239";
+
             //消息类型
             var msgtype = MsgTypeEnum.text.ToString();
 

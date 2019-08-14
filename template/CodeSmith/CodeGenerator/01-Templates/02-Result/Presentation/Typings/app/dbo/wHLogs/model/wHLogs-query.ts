@@ -9,6 +9,10 @@ export class WHLogsQuery extends QueryParameter {
      */
     id;
     /**
+     * 勾子编号
+     */
+    whId;
+    /**
      * 是为中转，否为非中转
      */
     wHTypes;

@@ -9,6 +9,10 @@ namespace GitDC.Data.Pos.dbo{
     /// </summary>
     public class WHLogsPo : PersistentObjectBase<Guid>,IDelete{
         /// <summary>
+        /// 勾子编号
+        /// </summary>  
+        public string WhId { get; set; }
+        /// <summary>
         /// 是为中转，否为非中转
         /// </summary>  
         public bool WHTypes { get; set; }

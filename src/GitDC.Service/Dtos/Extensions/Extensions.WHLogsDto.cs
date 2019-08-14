@@ -25,6 +25,7 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
             if( dto == null )
                 return new WHLogs();
             return new WHLogs( dto.Id.ToGuid() ) {
+                WhId = dto.WhId,
                     WHTypes = dto.WHTypes.SafeValue(),
                 RequestTop = dto.RequestTop,
                 Content = dto.Content,
@@ -48,6 +49,9 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        id : dto.Id.ToGuid(),
+        //        
+        //        
+        //        whId : dto.WhId,
         //        
         //        
         //        wHTypes : dto.WHTypes,
@@ -100,6 +104,9 @@ namespace GitDC.Service.Dtos.dbo.Extensions {
         //        
         //        
         //        Id = entity.Id.ToString(),
+        //        
+        //        
+        //        WhId = entity.WhId,
         //        
         //        
         //        WHTypes = entity.WHTypes,

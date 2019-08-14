@@ -25,6 +25,7 @@ namespace GitDC.Data.Pos.dbo.Extensions {
             if( po == null )
                 return null;
             return new WHLogs( po.Id ) {
+                WhId = po.WhId,
                 WHTypes = po.WHTypes,
                 RequestTop = po.RequestTop,
                 Content = po.Content,
@@ -56,6 +57,7 @@ namespace GitDC.Data.Pos.dbo.Extensions {
                 return null;
             return new WHLogsPo {
                 Id = entity.Id,
+                WhId = entity.WhId,
                 WHTypes = entity.WHTypes,
                 RequestTop = entity.RequestTop,
                 Content = entity.Content,

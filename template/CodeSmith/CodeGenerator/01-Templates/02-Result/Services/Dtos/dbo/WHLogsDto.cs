@@ -10,6 +10,13 @@ namespace GitDC.Service.Dtos.dbo {
     /// </summary>
     public class WHLogsDto : DtoBase {
         /// <summary>
+        /// 勾子编号
+        /// </summary>
+        [StringLength( 36, ErrorMessage = "勾子编号输入过长，不能超过36位" )]
+        [Column( "WhId" )]
+        [Display( Name = "勾子编号" )]
+        public string WhId { get; set; }
+        /// <summary>
         /// 是为中转，否为非中转
         /// </summary>
         [Column( "WHTypes" )]

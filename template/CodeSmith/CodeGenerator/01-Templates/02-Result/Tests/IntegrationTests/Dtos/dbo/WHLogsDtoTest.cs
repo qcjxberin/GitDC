@@ -41,6 +41,7 @@ namespace GitDC.Test.Integration.Dtos.dbo {
         public void TestToDto() {
             var dto = Create();
             Assert.Equal( WHLogsTest.Id.ToString(),dto.Id );
+            Assert.Equal( WHLogsTest.WhId,dto.WhId );
             Assert.Equal( WHLogsTest.WHTypes,dto.WHTypes );
             Assert.Equal( WHLogsTest.RequestTop,dto.RequestTop );
             Assert.Equal( WHLogsTest.Content,dto.Content );
@@ -59,6 +60,7 @@ namespace GitDC.Test.Integration.Dtos.dbo {
         public void TestToEntity() {
             var entity = Create().ToEntity();
             Assert.Equal( WHLogsTest.Id,entity.Id );
+            Assert.Equal( WHLogsTest.WhId,entity.WhId );
             Assert.Equal( WHLogsTest.WHTypes,entity.WHTypes );
             Assert.Equal( WHLogsTest.RequestTop,entity.RequestTop );
             Assert.Equal( WHLogsTest.Content,entity.Content );
