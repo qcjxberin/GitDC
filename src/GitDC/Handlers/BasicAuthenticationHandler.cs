@@ -94,21 +94,20 @@ namespace GitDC.Handlers
 
         public async Task<ClaimsPrincipal> SignInAsync(string userName, string password)
         {
-            XTrace.UseConsole();
-            XTrace.WriteLine("测试测试测试测试测试测试");
-            var i = Ioc.Create<IDCUsersService>();
-            //using (var serviceScope = ServiceCollection.BuildServiceProvider().CreateScope())
-            //{
-            //    var _user = serviceScope.ServiceProvider.GetService<IRepository<User>>();
-            //    var user = _user.List(r => r.Name == userName && r.Password == password).FirstOrDefault();
-            //    if (user == null)
-            //        return null;
-            //    var identity = new ClaimsIdentity(BasicAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-            //    identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
-            //    var principal = new ClaimsPrincipal(identity);
-            //    return principal;
-            //}
-            return null;
+            var DCUsersService = Ioc.Create<IDCUsersService>();
+            var model = await DCUsersService.GetUserByName(userName);
+            if (model == null)
+            {
+                return null;
+            }
+            if (model.Password != await DCUsersService.CreateUserPassword(password, model.Salt))
+            {
+                return null;
+            }
+            var identity = new ClaimsIdentity(BasicAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+            identity.AddClaim(new Claim(ClaimTypes.Name, model.Name));
+            var principal = new ClaimsPrincipal(identity);
+            return principal;
         }
     }
 

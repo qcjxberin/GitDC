@@ -89,7 +89,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <None Include="wwwroot\img\directory.svg" />
+    <None Include="wwwroot\img\file.svg" />
+    <None Include="wwwroot\img\logo_white.svg" />
+    <None Include="wwwroot\js\highlight\highlight.pack.js" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\jquery.min.map" />
+    <None Include="wwwroot\semantic\.versions" />
+    <None Include="wwwroot\semantic\semantic.js" />
+    <None Include="wwwroot\semantic\semantic.min.js" />
+    <None Include="wwwroot\semantic\themes\default\assets\fonts\icons.svg" />
+    <None Include="wwwroot\semantic\themes\default\assets\fonts\icons.woff2" />
   </ItemGroup>
 
   <PropertyGroup>

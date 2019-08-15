@@ -72,6 +72,12 @@ namespace GitDC.Common
         /// </summary>
         [Description("Redis配置")]
         public string Redis_Configuration { get; set; } = "localhost:6379"; //不包含密码localhost:6379或者包含密码及其他配置localhost:6379,password=senparc,connectTimeout=1000,connectRetry=2,syncTimeout=10000,defaultDatabase=3
+
+        /// <summary>
+        /// 随机库
+        /// </summary>
+        [Description("随机库")]
+        public string RandomLibrary { get; set; } = "123456789abcdefghjkmnpqrstuvwxy";
     }
 
     /// <summary>

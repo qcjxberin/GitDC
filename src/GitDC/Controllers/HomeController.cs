@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GitDC.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : DCControllerBase
     {
         public IActionResult Index()
         {
