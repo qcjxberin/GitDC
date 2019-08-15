@@ -5,13 +5,18 @@ VisualStudioVersion = 16.0.29111.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitDC", "src\GitDC\GitDC.csproj", "{EA401471-DC37-479A-A2D7-944C3C835EE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDC.Data", "src\GitDC.Data\GitDC.Data.csproj", "{C3ED0F7D-ACA1-4806-A6E5-A13BA32815F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitDC.Data", "src\GitDC.Data\GitDC.Data.csproj", "{C3ED0F7D-ACA1-4806-A6E5-A13BA32815F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDC.Domain", "src\GitDC.Domain\GitDC.Domain.csproj", "{F6CFEEC3-2E7E-4FCC-A409-870D5986E9BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitDC.Domain", "src\GitDC.Domain\GitDC.Domain.csproj", "{F6CFEEC3-2E7E-4FCC-A409-870D5986E9BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDC.Service", "src\GitDC.Service\GitDC.Service.csproj", "{9F522856-BE5A-4DC6-81B1-7B65EF6BD7EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitDC.Service", "src\GitDC.Service\GitDC.Service.csproj", "{9F522856-BE5A-4DC6-81B1-7B65EF6BD7EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitDC.Common", "src\GitDC.Common\GitDC.Common.csproj", "{9FE051C0-5252-4F9A-8411-28532ADBA823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GitDC.Common", "src\GitDC.Common\GitDC.Common.csproj", "{9FE051C0-5252-4F9A-8411-28532ADBA823}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC592CE2-C2C9-4C38-9066-56A221B3FEEB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
