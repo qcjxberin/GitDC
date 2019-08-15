@@ -53,7 +53,7 @@ namespace GitDC.Handlers
 
             if (SiteSetting.Current.GitConfig.RepositoryPath.IsNullOrEmpty())
             {
-                SiteSetting.Current.GitConfig.RepositoryPath = Path.Combine(Web.RootPath, "Repository");
+                SiteSetting.Current.GitConfig.RepositoryPath = Path.Combine(AppContext.BaseDirectory, "Repository");
                 SiteSetting.Current.SaveAsync();
             }
 
