@@ -20,11 +20,12 @@ using EasyCaching.SQLite;
 using GitDC.Auth;
 using GitDC.Common;
 using GitDC.Data;
-using GitDC.Filters;
+using GitDC.Handlers;
 using GitDC.SignalR;
 using GitDC.SwaggerExtensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server;
@@ -163,6 +164,11 @@ namespace GitDC
                     services.AddUnitOfWork<IGitDCUnitOfWork, Data.MySql.GitDCUnitOfWork>(Configuration.GetConnectionString("MySqlConnection"), Configuration);
                     break;
 
+                case "Sqlite":
+                    //======= 支持Sqlite =======
+                    services.AddUnitOfWork<IGitDCUnitOfWork, Data.Sqlite.GitDCUnitOfWork>(Configuration.GetConnectionString("SqliteConnection"), Configuration);
+                    break;
+
                 case "PostgreSQL":
                 default:
                     //======= 支持PgSql =======
@@ -185,55 +191,14 @@ namespace GitDC
             //添加Swagger
             ConfigSwagger(services);
 
-            #region 认证
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+            services.AddAuthentication(options =>
             {
-                o.LoginPath = new PathString("/Account/Login");
-                o.AccessDeniedPath = new PathString("/Error/Forbidden");
-            })
-            .AddCookie(AdminAuthorizeAttribute.AdminAuthenticationScheme, o =>
-            {
-                o.LoginPath = new PathString($"/{SiteSetting.Current.WebConfig.AdminPath}/Login");
-                o.AccessDeniedPath = new PathString("/Error/Forbidden");
-            })
-            .AddJwtBearer(JwtAuthorizeAttribute.JwtAuthenticationScheme, o =>
-            {
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,//是否验证Issuer
-                    ValidateAudience = true,//是否验证Audience
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
-                    ValidateLifetime = true,//是否验证超时  当设置exp和nbf时有效 同时启用ClockSkew 
-                    ClockSkew = TimeSpan.FromSeconds(30),//注意这是缓冲过期时间，总的有效时间等于这个时间加上jwt的过期时间，如果不配置，默认是5分钟
-                    ValidAudience = SiteSetting.Current.JWT.Audience,//Audience
-                    ValidIssuer = SiteSetting.Current.JWT.Issuer,//Issuer，这两项和前面签发jwt的设置一致
-                    RequireExpirationTime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SiteSetting.Current.JWT.JWTSecretKey))//拿到SecurityKey
-                };
-                o.Events = new JwtBearerEvents
-                {
-                    OnAuthenticationFailed = context =>
-                    {
-                        // 如果过期，则把<是否过期>添加到，返回头信息中
-                        if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                        {
-                            context.Response.Headers.Add("Token-Expired", "true");
-                        }
-                        return Task.CompletedTask;
-                    }
-                };
-            });
-            #endregion
-
-            #region 授权
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("App", policy => policy.RequireRole("App").Build());
-                options.AddPolicy("Admin", policy => policy.RequireRole("Admin").Build());
-                options.AddPolicy("AdminOrApp", policy => policy.RequireRole("Admin,App").Build());
-            });
-            #endregion
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options => {
+                options.AccessDeniedPath = "/User/Login";
+                options.LoginPath = "/User/Login";
+            }).AddBasic();
 
             // 添加Razor静态Html生成器
             services.AddRazorHtml();
@@ -407,6 +372,8 @@ namespace GitDC
 
             ////注册第三方登录配置
             //app.RegisterThridLogin();
+
+            app.CheckGit();
 
             app.UseAuthentication();
             app.UseSignalR(routes =>

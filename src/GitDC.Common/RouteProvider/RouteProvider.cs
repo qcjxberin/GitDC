@@ -1,4 +1,5 @@
-﻿using Ding.Mvc.Routing;
+﻿using Ding.Log;
+using Ding.Mvc.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 
@@ -27,6 +28,15 @@ namespace GitDC.Common
 
             //区域
             routeBuilder.MapRoute(name: "areaRoute", template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            #region GitController
+            routeBuilder.MapRoute(name: "Git.git", template: "git/{project}.git/{*verb}", defaults: new { controller = "Git", action = "Smart" });
+            routeBuilder.MapRoute(name: "Git", template: "git/{project}/{*verb}", defaults: new { controller = "Git", action = "Smart" });
+            #endregion
+
+            #region RepositoryController
+            routeBuilder.MapRoute(name: "Repository", template: "Repository/{action}/{name}/{*path}", defaults: new { controller = "Repository", path = "" });
+            #endregion
 
             //var BspBannedipsService = Ioc.Create<IBspBannedipsService>();
             //Console.WriteLine("测试测试测试" + BspBannedipsService.CheckIP(Web.Ip).Result);

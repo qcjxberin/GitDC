@@ -1,4 +1,5 @@
-﻿using Ding.Mvc.Routing;
+﻿using Ding.Log;
+using Ding.Mvc.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 

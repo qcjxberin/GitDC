@@ -25,6 +25,12 @@ namespace GitDC.Common
         public string CaptchaSecretKey { get; set; } = "HAOCODING";
 
         /// <summary>
+        /// Git配置
+        /// </summary>
+        [Description("Git配置")]
+        public GitConfig GitConfig { get; set; } = new GitConfig();
+
+        /// <summary>
         /// 网站配置
         /// </summary>
         [Description("网站配置")]
@@ -66,6 +72,25 @@ namespace GitDC.Common
         /// </summary>
         [Description("Redis配置")]
         public string Redis_Configuration { get; set; } = "localhost:6379"; //不包含密码localhost:6379或者包含密码及其他配置localhost:6379,password=senparc,connectTimeout=1000,connectRetry=2,syncTimeout=10000,defaultDatabase=3
+    }
+
+    /// <summary>
+    /// Git配置
+    /// </summary>
+    [DisplayName("Git配置")]
+    public class GitConfig
+    {
+        /// <summary>
+        /// 仓库地址
+        /// </summary>
+        [Description("仓库地址")]
+        public string RepositoryPath { get; set; } = "";
+
+        /// <summary>
+        /// Git.exe路径
+        /// </summary>
+        [Description("Git.exe路径")]
+        public string GitCorePath { get; set; } = "";
     }
 
     /// <summary>
@@ -152,7 +177,7 @@ namespace GitDC.Common
         /// <summary>
         /// Jwt密钥
         /// </summary>
-        public string JWTSecretKey { get; set; } = "lyDqoSIQmyFcUhmmN4KBRGWWzm1ELC7owHVtStOu1YD7wYz";
+        public string JWTSecretKey { get; set; } = "lyDqoSIQmyFcUhmmN4eBRGWWzm1ELC7owHVtStOu1YD7wYz";
 
         /// <summary>
         /// Web过期时间
@@ -177,11 +202,11 @@ namespace GitDC.Common
         /// <summary>
         /// 发行人
         /// </summary>
-        public string Issuer { get; set; } = "GiciSky";
+        public string Issuer { get; set; } = "Berin";
 
         /// <summary>
         /// 接收人
         /// </summary>
-        public string Audience { get; set; } = "LiGongBang";
+        public string Audience { get; set; } = "GITDC";
     }
 }

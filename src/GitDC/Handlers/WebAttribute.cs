@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Threading.Tasks;
 
-namespace GitDC.Filters
+namespace GitDC.Handlers
 {
     /// <summary>
     /// 当前系统自定义Web过滤器

@@ -39,26 +39,28 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="0.13.0-alpha-764" />
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
-    <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Offices.Excels.Npoi" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Schedulers" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190808-01" />
-    <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.Offices.Excels.Npoi" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.Schedulers" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190815-01" />
+    <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0017" />
+    <PackageReference Include="LibGit2Sharp.NativeBinaries" Version="2.0.289" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.MiddlewareAnalysis" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="3.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.12" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
@@ -84,6 +86,10 @@
     <Content Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
   <PropertyGroup>
