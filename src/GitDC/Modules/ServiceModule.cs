@@ -17,7 +17,7 @@ using System;
 using System.Data;
 using System.IO;
 
-namespace GitDC.Services
+namespace GitDC.Service
 {
     public class ServiceModule : Module, IConfig
     {

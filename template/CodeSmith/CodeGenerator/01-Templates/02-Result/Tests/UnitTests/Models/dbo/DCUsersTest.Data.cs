@@ -14,7 +14,7 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id = "c4f1bb00-5dbd-401e-a845-4118a90f4be6".ToLong();
+        public static readonly long Id = "997e1308-ce79-494c-8574-e467448ce128".ToLong();
         /// <summary>
         /// 用户名
         /// </summary>
@@ -79,7 +79,7 @@ namespace GitDC.Test.Models.dbo {
         /// <summary>
         /// 编号
         /// </summary>
-        public static readonly long Id2 = "938729f9-e8b1-467e-af2b-1debe928b6fd".ToLong();
+        public static readonly long Id2 = "635e7fe7-4669-4990-b5e2-7445dec815bd".ToLong();
         /// <summary>
         /// 用户名
         /// </summary>

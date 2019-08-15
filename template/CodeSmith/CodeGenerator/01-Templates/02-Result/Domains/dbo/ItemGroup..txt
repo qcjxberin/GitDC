@@ -1,4 +1,7 @@
 ﻿<ItemGroup>
+    <Compile Update="Models/DCRepositories.*.cs">
+      <DependentUpon>DCRepositories.cs</DependentUpon>
+    </Compile>
     <Compile Update="Models/DCUsers.*.cs">
       <DependentUpon>DCUsers.cs</DependentUpon>
     </Compile>

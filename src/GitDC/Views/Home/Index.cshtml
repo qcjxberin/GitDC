@@ -1,8 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using System.Collections.Generic
+@model IEnumerable<GitDC.Domain.Models.DCRepositories>
+@{
+    ViewBag.Title = "Home";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h2 class="ui header">仓库列表</h2>
+<div class="right">
+    <a href="/Home/Create">
+        <button class="ui teal right labeled icon button"><i class="right arrow icon"></i>新建仓库</button>
+    </a>
+</div>
+<div class="ui relaxed divided list">
+    @foreach (var repo in Model)
+    {
+        <div class="item">
+            <i class="large github middle aligned icon"></i>
+            <div class="content">
+                @Html.RouteLink(repo.Name, "GetRepositoryHomeView", new { userName = repo.UserName, repoName = repo.Name }, new { @class = "header medium ui" })
+                <div class="description">@repo.Description</div>
+                <div class="description">Updated @repo.LastModifiTime</div>
+            </div>
+        </div>
+    }
 </div>

@@ -49,7 +49,6 @@
     <PackageReference Include="Ding.Swashbuckle" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.TimedJob" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.Tools.Sms" Version="1.0.0-preview-20190815-01" />
-    <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0017" />
     <PackageReference Include="LibGit2Sharp.NativeBinaries" Version="2.0.289" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />

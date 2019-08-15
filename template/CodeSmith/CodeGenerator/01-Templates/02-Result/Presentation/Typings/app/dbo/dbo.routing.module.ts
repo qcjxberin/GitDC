@@ -1,5 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DCRepositoriesIndexComponent } from './dCRepositories/dCRepositories-index.component';
+import { DCRepositoriesEditComponent } from './dCRepositories/dCRepositories-edit.component';
+import { DCRepositoriesDetailComponent } from './dCRepositories/dCRepositories-detail.component';
 import { DCUsersIndexComponent } from './dCUsers/dCUsers-index.component';
 import { DCUsersEditComponent } from './dCUsers/dCUsers-edit.component';
 import { DCUsersDetailComponent } from './dCUsers/dCUsers-detail.component';
@@ -15,6 +18,12 @@ const routes: Routes = [
     {
         path: '',
         children: [
+            {path: 'dCRepositories', children: [
+                { path: '', component: DCRepositoriesIndexComponent },
+                { path: 'create', component: DCRepositoriesEditComponent },
+                { path: 'update/:id', component: DCRepositoriesEditComponent },
+                { path: 'detail/:id', component: DCRepositoriesDetailComponent }
+            ]},
             {path: 'dCUsers', children: [
                 { path: '', component: DCUsersIndexComponent },
                 { path: 'create', component: DCUsersEditComponent },

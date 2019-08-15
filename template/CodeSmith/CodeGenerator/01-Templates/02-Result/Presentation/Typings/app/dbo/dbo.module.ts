@@ -1,6 +1,9 @@
 ﻿import { NgModule } from '@angular/core';
 import { FrameworkModule } from '../framework.module';
 import { dboRoutingModule } from './dbo-routing.module';
+import { DCRepositoriesIndexComponent } from './dCRepositories/dCRepositories-index.component';
+import { DCRepositoriesEditComponent } from './dCRepositories/dCRepositories-edit.component';
+import { DCRepositoriesDetailComponent } from './dCRepositories/dCRepositories-detail.component';
 import { DCUsersIndexComponent } from './dCUsers/dCUsers-index.component';
 import { DCUsersEditComponent } from './dCUsers/dCUsers-edit.component';
 import { DCUsersDetailComponent } from './dCUsers/dCUsers-detail.component';
@@ -16,6 +19,7 @@ import { WHMiddlewareDetailComponent } from './wHMiddleware/wHMiddleware-detail.
  */
 @NgModule({
     declarations: [
+        DCRepositoriesIndexComponent,DCRepositoriesEditComponent,DCRepositoriesDetailComponent,
         DCUsersIndexComponent,DCUsersEditComponent,DCUsersDetailComponent,
         WHLogsIndexComponent,WHLogsEditComponent,WHLogsDetailComponent,
         WHMiddlewareIndexComponent,WHMiddlewareEditComponent,WHMiddlewareDetailComponent,

@@ -1,0 +1,88 @@
+﻿@model RepositoriesDto
+
+<util-form id="form" on-submit="submit(form,btnSubmit)">
+    <util-card>
+        <util-card-header>
+            <util-card-title>
+                编辑仓库表
+            </util-card-title>
+        </util-card-header>
+        <util-card-content>
+            <util-divider inset="true" />
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="DefaultBranch"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Description"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-slide-toggle for="IsMirror"></util-slide-toggle>
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-slide-toggle for="IsPrivate"></util-slide-toggle>
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Name"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="NumIssues"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="NumOpenIssues"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="NumOpenPulls"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="NumPulls"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="Size"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="UserID"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="UserName"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="CreationTime"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+            <util-layout class="mt30">
+                <util-layout-item flex="50%" offset="5%">
+                    <util-textbox for="LastModifiTime"></util-textbox>                
+                </util-layout-item>
+            </util-layout>
+        </util-card-content>
+        <util-card-actions align="Right">
+            <util-button text="返回" styles="Default" on-click="back()"></util-button>
+            <util-button id="btnSubmit" type="Submit" color="Primary"></util-button>
+        </util-card-actions>
+    </util-card>
+</util-form>
