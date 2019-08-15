@@ -1,0 +1,67 @@
+﻿@using GitDC.Extensions
+@using GitDC.Models
+@using LibGit2Sharp
+@model TreeModel
+@{
+    ViewBag.Title = Model.Name;
+
+    string currRepo = (string)ViewContext.RouteData.Values["repoName"];
+    string currUser = (string)ViewContext.RouteData.Values["userName"];
+    string currId = (string)ViewContext.RouteData.Values["id"];
+    var request = ViewContext.HttpContext.Request;
+    var giturl = $"{request.Scheme}://{request.Host}/{currUser}/{currRepo}.git";
+    var repo = Model.Repository;
+    var lastcommit = repo.Commits.FirstOrDefault();
+}
+<div class="ui clearing segment">
+    <h3 class="ui left floated header">@currUser / @currRepo</h3>
+</div>
+<h2>Contents of @Model.Name</h2>
+<div class="ui fluid action input">
+    <input type="text" value="@giturl" readonly>
+    <button class="ui teal right labeled icon button"><i class="copy icon"></i> Copy </button>
+</div>
+<div class="ui segment" id="git-stats">
+    <div class="ui two horizontal center link list">
+        <div class="item">
+            <a href="#"><span class="ui text black"><i class="icon history"></i> <b>@repo.Commits.Count()</b> 提交历史</span> </a>
+        </div>
+        <div class="item">
+            <a href="#"><span class="ui text black"><i class="icon git"></i><b>@repo.Branches.Count()</b> 代码分支</span> </a>
+        </div>
+        <div class="item">
+            <a href="#"><span class="ui text black"><i class="icon tag"></i> <b>0</b> 版本发布</span> </a>
+        </div>
+    </div>
+</div>
+<div class="ui top attached tabular menu">
+    <a class="item active" data-tab="code">代码</a>
+    <a class="item" data-tab="issues">Issues</a>
+    <a class="item" data-tab="pull">Pull requests</a>
+</div>
+<table class="ui celled striped table">
+    <thead>
+        <tr>
+            <th colspan="3">@lastcommit.Author.Name &nbsp;&nbsp;<span class="ui label">@lastcommit.Message</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Parent != null)
+        {
+            <tr>
+                <td class="collapsing"><i class="folder icon"></i><a href="@Url.UnencodedRouteLink("GetTreeView", new { repoName = currRepo, id = currId, path = Model.Parent })">..</a></td>
+                <td>Initial commit</td>
+                <td class="right aligned collapsing">10 hours ago</td>
+            </tr>
+        }
+        @foreach (FileViewModel fvm in Model.Children)
+        {
+            bool isTree = fvm.Type == ObjectType.Tree;
+            <tr>
+                <td class="collapsing"><i class="@((isTree) ? "folder" : "file outline") icon"></i><a href="@Url.UnencodedRouteLink((isTree) ? "GetTreeView" : "GetBlobView", new { repoName = currRepo, id = currId, path = fvm.Path })">@fvm.Name</a></td>
+                <td>@lastcommit.MessageShort</td>
+                <td class="right aligned collapsing">@lastcommit.Committer.When.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

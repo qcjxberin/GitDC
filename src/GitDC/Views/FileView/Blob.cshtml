@@ -1,0 +1,25 @@
+﻿@using GitDC.Extensions
+@using GitDC.Models
+@using GitDC.SyntaxHighlighing
+@model BlobModel
+
+@{
+    ViewBag.Title = Model.Name;
+}
+<link rel="stylesheet" href="~/js/highlight/styles/foundation.css">
+<script src="~/js/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+@if (Model.IsBinary)
+{
+    <p>This file is binary and cannot be displayed.</p>
+}
+else
+{
+    <pre>@Model.Content</pre>
+    //Html.HighlightCode(Model.Content, Highlighter.FromExtension(System.IO.Path.GetExtension(Model.Name)), "code")
+}
+<script>$(document).ready(function () {
+        $('pre').each(function (i, block) {
+            hljs.highlightBlock(block);
+        });
+    });</script>

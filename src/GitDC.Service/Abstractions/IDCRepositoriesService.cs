@@ -32,5 +32,20 @@ namespace GitDC.Service.Abstractions.dbo {
         /// <param name="remoteUrl"></param>
         /// <returns></returns>
         Repository CreateRepository(string name, string remoteUrl);
+
+        /// <summary>
+        /// 获取指定仓库的地址
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        Repository GetRepository(string name);
+
+        /// <summary>
+        /// 获取最后的提交
+        /// </summary>
+        /// <param name="repoName"></param>
+        /// <param name="branch"></param>
+        /// <returns></returns>
+        Commit GetLatestCommit(string repoName, string branch = null);
     }
 }

@@ -101,5 +101,32 @@ namespace GitDC.Service.Implements.dbo {
             }
         }
 
+        /// <summary>
+        /// 获取指定仓库的地址
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Repository GetRepository(string name)
+            => new Repository(Path.Combine(SiteSetting.Current.GitConfig.RepositoryPath, name));
+
+        /// <summary>
+        /// 获取最后的提交
+        /// </summary>
+        /// <param name="repoName"></param>
+        /// <param name="branch"></param>
+        /// <returns></returns>
+        public Commit GetLatestCommit(string repoName, string branch = null)
+        {
+            Repository repo = GetRepository(repoName);
+
+            Branch b;
+            if (branch == null)
+                b = repo.Head;
+            else
+                b = repo.Branches.First(d => d.CanonicalName == branch);
+
+            return b.Tip;
+        }
+
     }
 }
