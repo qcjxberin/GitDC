@@ -1,4 +1,5 @@
-﻿using LibGit2Sharp;
+﻿using GitDC.Base;
+using LibGit2Sharp;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,14 +7,26 @@ namespace GitDC.Models
 {
     public class TreeModel : FileViewModel<Tree>
     {
-        private string _parent;
+        public string Parent { get; set; }
 
-        public string Parent => _parent;
-        public IEnumerable<FileViewModel> Children => Object.Select(d => FromGitObject(Repository, d.Path, d.Name, d.Target));
+        public IEnumerable<FileViewModel> Children 
+        {
+            get
+            {
+                return Object.Select(d => FromGitObject(Repository, d.Path, d.Name, d.Target, d.TargetType))
+                    .OrderBy(s => s.EntryType == TreeEntryTargetType.Blob)
+                    .ThenBy(s => s.Name, new StringLogicalComparer());
+            }
+        }
 
         public TreeModel(Repository repo, string path, string name, Tree obj, string parent = null) : base(repo, path, name, obj)
         {
-            _parent = parent;
+            Parent = parent;
+        }
+
+        public TreeModel(Repository repo, string path, string name, Tree obj, TreeEntryTargetType EntryType, string parent = null) : base(repo, path, name, obj, EntryType)
+        {
+            Parent = parent;
         }
     }
 }

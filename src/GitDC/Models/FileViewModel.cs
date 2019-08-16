@@ -4,36 +4,46 @@ namespace GitDC.Models
 {
     public class FileViewModel
     {
-        private Repository _repository;
-        private GitObject _object;
-        private string _path;
-        private string _name;
+        public TreeEntryTargetType EntryType { get; set; }
 
-        public Repository Repository => _repository;
-        public GitObject Object => _object;
+        public Repository Repository { get; set; }
 
-        public string SHA1 => _object.Sha;
-        public ObjectType Type => Repository.ObjectDatabase.RetrieveObjectMetadata(_object.Id).Type;
-        public string Path => _path;
-        public string Name => _name;
+        public GitObject Object { get; set; }
+
+        public string SHA1 => Object.Sha;
+
+        public ObjectType Type => Repository.ObjectDatabase.RetrieveObjectMetadata(Object.Id).Type;
+
+        public string Path { get; set; }
+
+        public string Name { get; set; }
 
         protected internal FileViewModel(Repository repo, string path, string name, GitObject obj)
         {
-            _repository = repo;
-            _path = path;
-            _name = name;
-            _object = obj;
+            Repository = repo;
+            Path = path;
+            Name = name;
+            Object = obj;
         }
 
-        public static FileViewModel FromGitObject(Repository repo, string path, string name, GitObject obj)
+        protected internal FileViewModel(Repository repo, string path, string name, GitObject obj, TreeEntryTargetType entryType)
+        {
+            Repository = repo;
+            Path = path;
+            Name = name;
+            Object = obj;
+            EntryType = entryType;
+        }
+
+        public static FileViewModel FromGitObject(Repository repo, string path, string name, GitObject obj, TreeEntryTargetType EntryType)
         {
             switch (repo.ObjectDatabase.RetrieveObjectMetadata(obj.Id).Type)
             {
                 case ObjectType.Blob:
-                    return new BlobModel(repo, path, name, (Blob)obj);
+                    return new BlobModel(repo, path, name, (Blob)obj, EntryType);
 
                 case ObjectType.Tree:
-                    return new TreeModel(repo, path, name, (Tree)obj);
+                    return new TreeModel(repo, path, name, (Tree)obj, EntryType);
 
                 default:
                     return null;
@@ -46,5 +56,7 @@ namespace GitDC.Models
         protected new TObject Object => (TObject)base.Object;
 
         protected internal FileViewModel(Repository repo, string path, string name, TObject obj) : base(repo, path, name, obj) { }
+
+        protected internal FileViewModel(Repository repo, string path, string name, TObject obj, TreeEntryTargetType EntryType) : base(repo, path, name, obj, EntryType) { }
     }
 }

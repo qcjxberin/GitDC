@@ -10,5 +10,7 @@ namespace GitDC.Models
         public long Size => Repository.ObjectDatabase.RetrieveObjectMetadata(Object.Id).Size;
 
         public BlobModel(Repository repo, string path, string name, Blob obj) : base(repo, path, name, obj) { }
+
+        public BlobModel(Repository repo, string path, string name, Blob obj, TreeEntryTargetType EntryType) : base(repo, path, name, obj, EntryType) { }
     }
 }
