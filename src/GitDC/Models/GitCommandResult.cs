@@ -35,9 +35,6 @@ namespace GitDC.Controllers
             response.Headers.Add("Pragma", "no-cache");
             response.Headers.Add("Cache-Control", "no-cache, max-age=0, must-revalidate");
 
-            XTrace.UseConsole();
-            XTrace.WriteLine(_gitPath);
-
             ProcessStartInfo info = new ProcessStartInfo(Path.Combine(_gitPath, "git.exe"), Options.ToString())
             {
                 UseShellExecute = false,

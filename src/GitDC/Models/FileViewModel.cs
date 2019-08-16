@@ -18,6 +18,8 @@ namespace GitDC.Models
 
         public string Name { get; set; }
 
+        public Commit Commit { get; set; }
+
         protected internal FileViewModel(Repository repo, string path, string name, GitObject obj)
         {
             Repository = repo;
@@ -33,6 +35,15 @@ namespace GitDC.Models
             Name = name;
             Object = obj;
             EntryType = entryType;
+        }
+
+        protected internal FileViewModel(Repository repo, string path, string name, GitObject obj, Commit commit)
+        {
+            Repository = repo;
+            Path = path;
+            Name = name;
+            Object = obj;
+            Commit = commit;
         }
 
         public static FileViewModel FromGitObject(Repository repo, string path, string name, GitObject obj, TreeEntryTargetType EntryType)
@@ -56,6 +67,8 @@ namespace GitDC.Models
         protected new TObject Object => (TObject)base.Object;
 
         protected internal FileViewModel(Repository repo, string path, string name, TObject obj) : base(repo, path, name, obj) { }
+
+        protected internal FileViewModel(Repository repo, string path, string name, TObject obj, Commit commit) : base(repo, path, name, obj, commit) { }
 
         protected internal FileViewModel(Repository repo, string path, string name, TObject obj, TreeEntryTargetType EntryType) : base(repo, path, name, obj, EntryType) { }
     }

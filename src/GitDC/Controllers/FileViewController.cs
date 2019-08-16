@@ -30,7 +30,7 @@ namespace GitDC.Controllers
 
                 if (path == null)
                 {
-                    return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree));
+                    return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
                 }
 
                 TreeEntry entry = commit[path];
