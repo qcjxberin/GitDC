@@ -1,4 +1,6 @@
 ﻿using Ding.Helpers;
+using Ding.Logs;
+using Ding.Logs.Extensions;
 using Ding.Webs.Controllers;
 using Ding.Webs.Models;
 using GitDC.Common;
@@ -39,16 +41,19 @@ namespace GitDC.Controllers
             {
                 return resFunc();
             }
-            catch (RepositoryNotFoundException)
+            catch (RepositoryNotFoundException ex)
             {
+                ex.Log(GetLog().Exception(ex, "404"));
                 return MakeError("Repository not found", repoName, 404);
             }
-            catch (NotFoundException)
+            catch (NotFoundException ex)
             {
+                ex.Log(GetLog().Exception(ex, "404"));
                 return MakeError("The requested file could not be found", repoName, 404);
             }
             catch (Exception e)
             {
+                e.Log(GetLog().Exception(e, "404"));
                 return MakeError(e, repoName);
             }
         }

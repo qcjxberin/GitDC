@@ -15,6 +15,8 @@ using LibGit2Sharp;
 using System.IO;
 using GitDC.Common;
 using System.Linq;
+using Ding.IO;
+using Ding.Files;
 
 namespace GitDC.Service.Implements.dbo {
     /// <summary>
@@ -107,7 +109,16 @@ namespace GitDC.Service.Implements.dbo {
         /// <param name="name"></param>
         /// <returns></returns>
         public Repository GetRepository(string name)
-            => new Repository(Path.Combine(SiteSetting.Current.GitConfig.RepositoryPath, name));
+        {
+            var path = Path.Combine(SiteSetting.Current.GitConfig.RepositoryPath, name);
+
+            if (!FileSystemObject.IsExist(path, FsoMethod.Folder) || DirectoryUtil.IsEmpty(path))
+            {
+                return new Repository(Repository.Init(path, true));
+            }
+
+            return new Repository(path);
+        }
 
         /// <summary>
         /// 获取最后的提交
