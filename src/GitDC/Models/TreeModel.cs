@@ -15,30 +15,10 @@ namespace GitDC.Models
         {
             get
             {
-                //XTrace.UseConsole();
 
                 var result = Object.Select(d => FromGitObject(Repository, d.Path, d.Name, d.Target, d.TargetType))
                     .OrderBy(s => s.EntryType == TreeEntryTargetType.Blob)
                     .ThenBy(s => s.Name, new StringLogicalComparer());
-
-                //var ancestors = Repository.Commits
-                //    .QueryBy(new CommitFilter { IncludeReachableFrom = Commit, SortBy = CommitSortStrategies.Topological });
-
-
-
-                //foreach (var item in result)
-                //{
-                //    foreach (var ancestor in ancestors)
-                //    {
-                //        var ancestorEntry = ancestor[item.Path];
-                //        if (ancestorEntry != null && ancestorEntry.Target.Sha == item.Object.Sha)
-                //        {
-                //            XTrace.WriteLine($"测试测试测试测试测试2:{ancestorEntry.ToJson()}_{ancestor.Committer.When}");
-                //            //break;
-                //        }
-                //    }
-                //    XTrace.WriteLine($"测试测试测试测试测试1:{item.Name}_{item.Path}_{item.Object.Sha}");
-                //}
 
                 return result;
             }

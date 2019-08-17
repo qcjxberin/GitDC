@@ -19,22 +19,26 @@
     <input type="text" value="@giturl" readonly>
     <button class="ui teal right labeled icon button"><i class="copy icon"></i> Copy </button>
 </div>
-<div class="ui segment" id="git-stats">
-    <div class="ui two horizontal center link list">
-        <div class="item">
-            <a href="#"><span class="ui text black"><i class="icon history"></i> <b>@Model.Scope.Commits</b> 提交历史</span> </a>
-        </div>
-        <div class="item">
-            <a href="#"><span class="ui text black"><i class="icon git"></i><b>@Model.Scope.Branches</b> 代码分支</span> </a>
-        </div>
-        <div class="item">
-            <a href="#"><span class="ui text black"><i class="icon tag"></i> <b>@Model.Scope.Tags</b> 标签</span> </a>
-        </div>
-        <div class="item">
-            <a href="#"><span class="ui text black"><i class="icon tag"></i> <b>@Model.Scope.Contributors</b> 参与</span> </a>
+@if (Model.IsRoot)
+{
+    <div class="ui segment" id="git-stats">
+        <div class="ui two horizontal center link list">
+            <div class="item">
+                <a href="#"><span class="ui text black"><i class="icon history"></i> <b>@Model.Scope.Commits</b> 提交历史</span> </a>
+            </div>
+            <div class="item">
+                <a href="#"><span class="ui text black"><i class="icon git"></i><b>@Model.Scope.Branches</b> 代码分支</span> </a>
+            </div>
+            <div class="item">
+                <a href="#"><span class="ui text black"><i class="icon tag"></i> <b>@Model.Scope.Tags</b> 标签</span> </a>
+            </div>
+            <div class="item">
+                <a href="#"><span class="ui text black"><i class="icon tag"></i> <b>@Model.Scope.Contributors</b> 参与</span> </a>
+            </div>
         </div>
     </div>
-</div>
+}
+
 <div class="ui top attached tabular menu">
     <a class="item active" data-tab="code">代码</a>
     <a class="item" data-tab="issues">Issues</a>
@@ -61,9 +65,13 @@
                         else
                         { <span class="glyphicon glyphicon-leaf"></span>}
                         @if (entry.EntryType == LibGit2Sharp.TreeEntryTargetType.GitLink)
-                        {@entry.Name.ShortString(25) }
-                    else
-                    { @Html.ActionLink(entry.Name.ShortString(25), entry.EntryType.ToString(), Html.OverRoute(new { path = (Model.ReferenceName ?? Model.Commit.Sha) + "/" + entry.Path }))}
+                        {
+                            @entry.Name.ShortString(25)
+                        }
+                        else
+                        {
+                            <a href="@Url.UnencodedRouteLink((entry.EntryType.ToString() == "Tree") ? "GetTreeView" : "GetBlobView", new { repoName = currRepo, id = currId, path = @entry.Path })">@entry.Name.ShortString(25)</a>
+                        }
                     </span>
                 </td>
                 <td><span title="@entry.Commit.CommitMessageShort">@(entry.Commit.Sha == null ? Html.Raw(entry.Commit.CommitMessageShort) : Html.ActionLink(entry.Commit.CommitMessageShort.ShortString(70), "Commit", Html.OverRoute(new { path = entry.Commit.Sha })))</span></td>

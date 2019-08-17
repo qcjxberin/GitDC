@@ -6,6 +6,7 @@ using GitDC.Models;
 using GitDC.Service.Abstractions.dbo;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -20,6 +21,8 @@ namespace GitDC.Controllers
 
         public async Task<IActionResult> GetTreeView(string userName, string repoName, string id, string path)
         {
+            XTrace.UseConsole();
+
             var DCRepositoriesService = Ioc.Create<IDCRepositoriesService>();
 
             repoName = Path.Combine(userName, repoName);
@@ -31,6 +34,10 @@ namespace GitDC.Controllers
 
             using (var git = new GitService(repoName))
             {
+                if (!path.IsNullOrEmpty())
+                {
+                    path = id + "/" + path;
+                }
                 var model = await git.GetTree(path);
 
                 if (model == null)
@@ -38,40 +45,12 @@ namespace GitDC.Controllers
                     return NotFound();
                 }
 
-                if (path == null)
-                {
-                    return View("Tree", model);
-                    return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
-                }
+                if (model.Entries == null && model.ReferenceName != "HEAD")
+                    return RedirectToAction("Tree", new { path = model.ReferenceName });
 
-            }
+                XTrace.WriteLine(model.ToJson());
 
-            
-
-            
-
-            
-
-            
-
-            
-
-            TreeEntry entry = commit[path];
-            if (entry == null)
-                return NotFound();
-
-            string parent = Path.GetDirectoryName(entry.Path).Replace(Path.DirectorySeparatorChar, '/');
-
-            switch (entry.TargetType)
-            {
-                case TreeEntryTargetType.Tree:
-                    return View("Tree", new TreeModel(repo, entry.Path, entry.Name, (Tree)entry.Target, parent));
-
-                case TreeEntryTargetType.Blob:
-                    return Redirect(Url.UnencodedRouteLink("GetBlobView", new { repoName = repoName, id = id, path = path }));
-
-                default:
-                    return BadRequest();
+                return View("Tree", model);
             }
         }
 

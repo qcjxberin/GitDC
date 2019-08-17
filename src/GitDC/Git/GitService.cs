@@ -51,7 +51,6 @@ namespace GitDC.Git
         #region Repository Browser
         public async Task<TreesModel> GetTree(string path)
         {
-            XTrace.UseConsole();
             var isEmptyPath = string.IsNullOrEmpty(path);
             string referenceName;
             var commit = GetCommitByPath(ref path, out referenceName);
@@ -92,8 +91,6 @@ namespace GitDC.Git
                 return null;
 
             model.RepositoryName = _repoId;
-            XTrace.WriteLine(_repository.Commits.Count().ToString());
-
 
             var CacheSummary = new SummaryCache(_repoId, _repository, commit, tree);
             var result = await CacheSummary.GetCache();
