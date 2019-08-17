@@ -23,22 +23,38 @@ namespace GitDC.Controllers
             var DCRepositoriesService = Ioc.Create<IDCRepositoriesService>();
 
             repoName = Path.Combine(userName, repoName);
-
-            using (var git = new GitService(repoName))
-            {
-                var model = await git.GetTree(path);
-            }
-
             Repository repo = DCRepositoriesService.GetRepository(repoName);
             Commit commit = repo.Branches[id]?.Tip ?? repo.Lookup<Commit>(id);
 
             if (commit == null)
                 return View("Init");
 
-            if (path == null)
+            using (var git = new GitService(repoName))
             {
-                return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
+                var model = await git.GetTree(path);
+
+                if (model == null)
+                {
+                    return NotFound();
+                }
+
+                if (path == null)
+                {
+                    return View("Tree", model);
+                    return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
+                }
+
             }
+
+            
+
+            
+
+            
+
+            
+
+            
 
             TreeEntry entry = commit[path];
             if (entry == null)

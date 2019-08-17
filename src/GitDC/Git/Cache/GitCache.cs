@@ -13,7 +13,6 @@ namespace GitDC.Git.Cache
         protected readonly Repository repo;
         protected readonly string repoPath;
 
-        protected RevisionSummaryCacheItem[] result;
         protected bool resultDone;
         protected string cacheKey;
         

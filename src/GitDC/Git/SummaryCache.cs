@@ -17,6 +17,8 @@ namespace GitDC.Git
         private readonly Commit commit;
         private readonly Tree tree;
 
+        protected RevisionSummaryCacheItem[] result;
+
         public SummaryCache(string repoId, Repository repo, Commit commit, Tree tree) : base(repoId, repo)
         {
             Contract.Requires(commit != null);

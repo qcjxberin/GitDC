@@ -1,0 +1,21 @@
+﻿@model GitDC.Models.TreeEntryModel
+
+@if (Model.BlobType == BlobType.Text)
+{
+    <pre><code class="language @Model.TextBrush">@Model.TextContent</code></pre>
+}
+else if (Model.BlobType == BlobType.MarkDown)
+{
+    <div id="md">@Model.TextContent</div>
+}
+else if (Model.BlobType == BlobType.Image)
+{
+    <img alt="@Model.Name" src="@Url.Action("Raw", Html.OverRoute(new { path = (Model.ReferenceName ?? Model.Commit.Sha) + "/" + Model.Path }))" />
+}
+else // Binary
+{
+<div class="alert alert-block">
+    不支持预览二进制文件<br />
+    @Html.ActionLink("原文件", "Raw", Html.OverRoute(new { path = (Model.ReferenceName ?? Model.Commit.Sha) + "/" + Model.Path }))
+</div>
+}

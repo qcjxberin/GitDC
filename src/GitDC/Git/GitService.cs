@@ -91,8 +91,12 @@ namespace GitDC.Git
             if (tree == null)
                 return null;
 
-            var Cache = new SummaryCache(_repoId, _repository, commit, tree);
-            var result = await Cache.GetCache();
+            model.RepositoryName = _repoId;
+            XTrace.WriteLine(_repository.Commits.Count().ToString());
+
+
+            var CacheSummary = new SummaryCache(_repoId, _repository, commit, tree);
+            var result = await CacheSummary.GetCache();
 
             var entries = (from entry in tree
                            join item in result on entry.Name equals item.Name into g
@@ -114,8 +118,6 @@ namespace GitDC.Git
                            .OrderBy(s => s.EntryType == TreeEntryTargetType.Blob)
                            .ThenBy(s => s.Name, new StringLogicalComparer())
                            .ToList();
-
-            XTrace.WriteLine($"测试：{entries.ToJson()}");
 
             model.Entries = entries;
             model.Readme = entries.FirstOrDefault(s => s.EntryType == TreeEntryTargetType.Blob
@@ -154,8 +156,8 @@ namespace GitDC.Git
 
             if (model.IsRoot)
             {
-                var scopeAccessor = GitCacheAccessor.Singleton(new ScopeAccessor(_repoId, _repository, commit));
-                model.Scope = scopeAccessor.Result.Value;
+                var CacheScope = new ScopeCache(_repoId, _repository, commit);
+                model.Scope = await CacheScope.GetCache();
             }
 
             return model;

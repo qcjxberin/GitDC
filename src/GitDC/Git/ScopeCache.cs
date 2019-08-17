@@ -1,4 +1,6 @@
-﻿using GitDC.Extensions;
+﻿using Ding.Helpers;
+using EasyCaching.Core;
+using GitDC.Extensions;
 using GitDC.Git.Cache;
 using GitDC.Models;
 using LibGit2Sharp;
@@ -6,17 +8,19 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GitDC.Git
 {
-    public class ScopeAccessor : GitCacheAccessor<RepositoryScope, ScopeAccessor>
+    public class ScopeCache : GitCache
     {
+        protected RepositoryScope result;
+
         private readonly Commit commit;
         private readonly string path;
         private readonly bool pathExist;
 
-        public ScopeAccessor(string repoId, Repository repo, Commit commit, string path = "")
-            : base(repoId, repo)
+        public ScopeCache(string repoId, Repository repo, Commit commit, string path = "") : base(repoId, repo)
         {
             Contract.Requires(commit != null);
 
@@ -27,10 +31,10 @@ namespace GitDC.Git
 
         protected override string GetCacheKey()
         {
-            return GetCacheKey(commit.Sha, path);
+            return GetCacheKey("ScopeCache", commit.Sha, path);
         }
 
-        protected override void Init()
+        protected void Init()
         {
             result = new RepositoryScope
             {
@@ -41,8 +45,9 @@ namespace GitDC.Git
             };
         }
 
-        protected override void Calculate()
+        protected void Calculate()
         {
+            Init();
             using (var repo = new Repository(this.repoPath))
             {
                 var ancestors = pathExist
@@ -58,6 +63,22 @@ namespace GitDC.Git
                 }
             }
             resultDone = true;
+        }
+
+        public async Task<RepositoryScope> GetCache()
+        {
+            var cache = Ioc.Create<IEasyCachingProviderFactory>().GetCachingProvider("redis1");
+            var CacheKey = GetCacheKey();
+            if (await cache.ExistsAsync(CacheKey))
+            {
+                result = (await cache.GetAsync<RepositoryScope>(CacheKey)).Value;
+            }
+            else
+            {
+                Calculate();
+                cache.Set(CacheKey, result, TimeSpan.FromDays(7));
+            }
+            return result;
         }
     }
 }
