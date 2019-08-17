@@ -62,6 +62,17 @@ namespace GitDC.Handlers
                 DirectoryUtil.CreateIfNotExists(SiteSetting.Current.GitConfig.RepositoryPath);
             }
 
+            if (SiteSetting.Current.GitConfig.CachePath.IsNullOrEmpty())
+            {
+                SiteSetting.Current.GitConfig.CachePath = Path.Combine(AppContext.BaseDirectory, "Cache");
+                SiteSetting.Current.SaveAsync();
+            }
+
+            if (!FileSystemObject.IsExist(SiteSetting.Current.GitConfig.CachePath, FsoMethod.Folder))
+            {
+                DirectoryUtil.CreateIfNotExists(SiteSetting.Current.GitConfig.CachePath);
+            }
+
             return self;
         }
 

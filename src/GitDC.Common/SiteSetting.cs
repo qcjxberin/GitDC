@@ -97,6 +97,12 @@ namespace GitDC.Common
         /// </summary>
         [Description("Git.exe路径")]
         public string GitCorePath { get; set; } = "";
+
+        /// <summary>
+        /// Cache路径
+        /// </summary>
+        [Description("Cache路径")]
+        public string CachePath { get; set; } = "";
     }
 
     /// <summary>

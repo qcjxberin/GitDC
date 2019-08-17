@@ -40,7 +40,7 @@
     <PackageReference Include="AngleSharp" Version="0.13.0-alpha-764" />
     <PackageReference Include="BuildBundlerMinifier" Version="2.9.406" />
     <PackageReference Include="Ding.Caches" Version="1.0.0-preview-20190815-01" />
-    <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190808-01" />
+    <PackageReference Include="Ding.Captcha" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.Drawing" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.Encryption" Version="1.0.0-preview-20190815-01" />
     <PackageReference Include="Ding.MailKit" Version="1.0.0-preview-20190815-01" />

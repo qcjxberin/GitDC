@@ -1,6 +1,6 @@
 ﻿namespace GitDC.Common
 {
-    public static class CacheKeys
+    public partial class CacheKeys
     {
         public static string Entry { get { return "_Entry"; } }
         public static string DingTalkEntry { get { return "_DingTalkEntry"; } }
@@ -13,5 +13,13 @@
         public static string Ticks { get { return "_Ticks"; } }
         public static string CancelMsg { get { return "_CancelMsg"; } }
         public static string CancelTokenSource { get { return "_CancelTokenSource"; } }
+    }
+
+    public partial class CacheKeys
+    {
+        /// <summary>
+        /// 仓库缓存Key
+        /// </summary>
+        public const string REPOSITORIES = "LGB-REPOSITORIES-";
     }
 }

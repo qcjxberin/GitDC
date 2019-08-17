@@ -1,0 +1,202 @@
+﻿using LibGit2Sharp;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics.Contracts;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace GitDC.Extensions
+{
+    public static class MetadataExtension
+    {
+        const int ShaBytesLength = 20;
+        const string HexValuesInUppercase = "0123456789ABCDEF";
+        const string HexValuesInLowercase = "0123456789abcdef";
+
+        public static byte[] AggregateSha(this byte[] one, params byte[][] twos)
+        {
+            Contract.Requires(one == null);
+            Contract.Requires(one.Length == ShaBytesLength);
+
+            var val = one.ToArray();
+            foreach (var two in twos)
+            {
+                Contract.Assert(two != null && two.Length == ShaBytesLength);
+                for (int i = 0; i < ShaBytesLength; i++)
+                {
+                    val[i] ^= two[i];
+                }
+            }
+
+            return val;
+        }
+
+        public static string BytesToString(this byte[] bytes)
+        {
+            Contract.Requires(bytes != null);
+
+            var length = bytes.Length;
+            var chars = new char[length * 2];
+            for (int i = 0, index = 0; i < length; i++)
+            {
+                var b = bytes[i];
+                chars[index++] = HexValuesInLowercase[b & 0xf];
+                chars[index++] = HexValuesInLowercase[b >> 4];
+            }
+
+            return new string(chars);
+        }
+
+        public static string ToFlagString(this bool flag, string trueStr, string falseStr)
+        {
+            return flag ? trueStr : falseStr;
+        }
+
+        public static Dictionary<string, object> CastToDictionary(this object values)
+        {
+            if (values == null)
+                return null;
+
+            var dictionary = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
+            var properties = TypeDescriptor.GetProperties(values);
+            foreach (PropertyDescriptor propertyDescriptor in properties)
+            {
+                var value = propertyDescriptor.GetValue(values);
+                dictionary.Add(propertyDescriptor.Name, value);
+            }
+            return dictionary;
+        }
+
+        public static string ToShortSha(this string sha)
+        {
+            if (sha == null)
+                return null;
+
+            return sha.Length > 7 && sha.All(c => '0' <= c && c <= '9' || 'a' <= c && c <= 'f' || 'A' <= c && c <= 'F')
+                ? sha.Substring(0, 7)
+                : sha;
+        }
+
+        public static IEnumerable<SelectListItem> ToSelectListItem(this IEnumerable<string> items, string selected)
+        {
+            return items.Select(s => new SelectListItem
+            {
+                Text = s,
+                Selected = s == selected,
+            });
+        }
+
+        public static string CalcSha(this string str)
+        {
+            var sha = new SHA1CryptoServiceProvider();
+            var data = Encoding.UTF8.GetBytes(str);
+            data = sha.ComputeHash(data);
+            return data.BytesToString();
+        }
+
+        public static string RepetitionIfEmpty(this string str, string repetition)
+        {
+            return string.IsNullOrWhiteSpace(str)
+                ? repetition
+                : str;
+        }
+
+        public static string ShortString(this string str, int length)
+        {
+            var wide = 0;
+            var len = 0;
+            foreach (var ch in str)
+            {
+                // simple place a wide character
+                wide += ch < 0x1000 ? 1 : 2;
+                len++;
+                if (wide > length)
+                    return str.Substring(0, len - 4) + " ...";
+            }
+            return str;
+        }
+
+        public static byte[] ToBytes(this Stream stream)
+        {
+            if (stream == null)
+                return null;
+
+            if (stream is MemoryStream)
+            {
+                var ms = (MemoryStream)stream;
+                return ms.ToArray();
+            }
+
+            var buffer = new byte[16 * 1024];
+            using (var ms = new MemoryStream())
+            {
+                int len;
+                while ((len = stream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, len);
+                }
+                return ms.ToArray();
+            }
+        }
+
+        public static string ReadLines(this StringReader reader, int lineCount)
+        {
+            var sb = new StringBuilder();
+            while (lineCount-- > 0)
+            {
+                sb.Append(reader.ReadLine());
+                if (lineCount > 0)
+                    sb.AppendLine();
+            }
+            return sb.ToString();
+        }
+
+        public static string ToLocateString(this ChangeKind changeKind)
+        {
+            switch (changeKind)
+            {
+                case ChangeKind.Added:
+                    return "增加";
+                //return SR.Repository_FileAdded;
+                case ChangeKind.Copied:
+                    return "复制";
+                //return SR.Repository_FileCopied;
+                case ChangeKind.Deleted:
+                    return "删除";
+                //return SR.Repository_FileDeleted;
+                case ChangeKind.Ignored:
+                    return "忽略";
+                //return SR.Repository_FileIgnored;
+                case ChangeKind.Modified:
+                    return "修改";
+                //return SR.Repository_FileModified;
+                case ChangeKind.Renamed:
+                    return "重命名";
+                //return SR.Repository_FileRenamed;
+                case ChangeKind.TypeChanged:
+                    return "改变类型";
+                //return SR.Repository_FileTypeChanged;
+                case ChangeKind.Unmodified:
+                    return "未修改";
+                //return SR.Repository_FileUnmodified;
+                case ChangeKind.Untracked:
+                    return "未跟踪";
+                //return SR.Repository_FileUntracked;
+                default:
+                    return string.Empty;
+            }
+        }
+
+        [Pure]
+        public static string SafyToString(this object obj)
+        {
+            if (obj == null)
+                return null;
+            return obj.ToString();
+        }
+    }
+}

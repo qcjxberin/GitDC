@@ -1,10 +1,13 @@
 ﻿using Ding.Helpers;
+using Ding.Log;
 using GitDC.Extensions;
+using GitDC.Git;
 using GitDC.Models;
 using GitDC.Service.Abstractions.dbo;
 using LibGit2Sharp;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace GitDC.Controllers
 {
@@ -15,42 +18,45 @@ namespace GitDC.Controllers
             return TryGetResult(repoName, () => RedirectToRoutePermanent("GetRepositoryHomeView", new { userName = userName, repoName = repoName }));
         }
 
-        public IActionResult GetTreeView(string userName, string repoName, string id, string path)
+        public async Task<IActionResult> GetTreeView(string userName, string repoName, string id, string path)
         {
-            return TryGetResult(repoName, () =>
+            var DCRepositoriesService = Ioc.Create<IDCRepositoriesService>();
+
+            repoName = Path.Combine(userName, repoName);
+
+            using (var git = new GitService(repoName))
             {
-                var DCRepositoriesService = Ioc.Create<IDCRepositoriesService>();
+                var model = await git.GetTree(path);
+            }
 
-                repoName = Path.Combine(userName, repoName);
-                Repository repo = DCRepositoriesService.GetRepository(repoName);
-                Commit commit = repo.Branches[id]?.Tip ?? repo.Lookup<Commit>(id);
+            Repository repo = DCRepositoriesService.GetRepository(repoName);
+            Commit commit = repo.Branches[id]?.Tip ?? repo.Lookup<Commit>(id);
 
-                if (commit == null)
-                    return View("Init");
+            if (commit == null)
+                return View("Init");
 
-                if (path == null)
-                {
-                    return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
-                }
+            if (path == null)
+            {
+                return View("Tree", new TreeModel(repo, "/", repoName, commit.Tree, commit));
+            }
 
-                TreeEntry entry = commit[path];
-                if (entry == null)
-                    return NotFound();
+            TreeEntry entry = commit[path];
+            if (entry == null)
+                return NotFound();
 
-                string parent = Path.GetDirectoryName(entry.Path).Replace(Path.DirectorySeparatorChar, '/');
+            string parent = Path.GetDirectoryName(entry.Path).Replace(Path.DirectorySeparatorChar, '/');
 
-                switch (entry.TargetType)
-                {
-                    case TreeEntryTargetType.Tree:
-                        return View("Tree", new TreeModel(repo, entry.Path, entry.Name, (Tree)entry.Target, parent));
+            switch (entry.TargetType)
+            {
+                case TreeEntryTargetType.Tree:
+                    return View("Tree", new TreeModel(repo, entry.Path, entry.Name, (Tree)entry.Target, parent));
 
-                    case TreeEntryTargetType.Blob:
-                        return Redirect(Url.UnencodedRouteLink("GetBlobView", new { repoName = repoName, id = id, path = path }));
+                case TreeEntryTargetType.Blob:
+                    return Redirect(Url.UnencodedRouteLink("GetBlobView", new { repoName = repoName, id = id, path = path }));
 
-                    default:
-                        return BadRequest();
-                }
-            });
+                default:
+                    return BadRequest();
+            }
         }
 
         public IActionResult GetBlobView(string userName, string repoName, string id, string path)
