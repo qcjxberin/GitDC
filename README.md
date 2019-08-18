@@ -8,7 +8,8 @@ GitDC是基于.Net Core 2.2的Git Server服务端程序。
 
 QQ群：774046050
 
-下载之后运行dotnet watch run可直接本地运行。数据库为mysql
+下载之后运行dotnet watch run可直接本地运行。数据库为mysql，默认有连接远程服务器测试数据库。
+本地数据库脚本目录：GitDC.Data/DbScripts/Mysql。 后续会持续支持Sqlite/Oracle/Pgsql/SqlServer
 
 运行之后的演示地址：http://localhost:7070  账号：admin   密码： admin
 
@@ -19,7 +20,7 @@ QQ群：774046050
 3. 创建仓库
 4. 上传和拉取源码
 5. 仓库项目资源列表展示
-6. 腾讯开发者和禅道webHook转发（目前只实现了手动在数据库里配置）。
+6. 腾讯开发者和禅道webHook转发钉钉机器人（目前只实现了手动在数据库里配置）。
 
 ![注册](https://images.gitee.com/uploads/images/2019/0815/212129_dfe17ade_130171.png "5972F9CE-38AE-45f7-B84B-0F852FECCD61.png")
 ![登录](https://images.gitee.com/uploads/images/2019/0815/212158_13664b4e_130171.png "259BE4A4-4BB4-47ab-82E0-28675B4C3E30.png")
