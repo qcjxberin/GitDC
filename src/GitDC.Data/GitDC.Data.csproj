@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DbScripts\MySql\" />
     <Folder Include="DbScripts\Oracle\" />
     <Folder Include="DbScripts\PgSql\" />
     <Folder Include="DbScripts\SqlServer\" />
