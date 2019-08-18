@@ -8,7 +8,8 @@ GitDC是基于.Net Core 2.2的Git Server服务端程序。
 
 QQ群：774046050
 
-下载之后运行dotnet watch run可直接本地运行。数据库为mysql
+下载之后运行dotnet watch run可直接本地运行。数据库为mysql，默认有连接远程服务器测试数据库。
+本地数据库脚本目录：GitDC.Data/DbScripts/Mysql。 后续会持续支持Sqlite/Oracle/Pgsql/SqlServer
 
 运行之后的演示地址：http://localhost:7070  账号：admin   密码： admin
 
