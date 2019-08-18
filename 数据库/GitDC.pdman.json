@@ -1689,16 +1689,6 @@
     "sqlConfig": "/*SQL@Run*/",
     "dbs": [
       {
-        "name": "GitDC(MySql)",
-        "defaultDB": false,
-        "properties": {
-          "driver_class_name": "com.mysql.jdbc.Driver",
-          "url": "jdbc:mysql://120.79.187.148:3306/GitDC?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=UTC",
-          "password": "sZXwYJeibenxecpr",
-          "username": "GitDC"
-        }
-      },
-      {
         "name": "TestGitDC(MySql)",
         "defaultDB": true,
         "properties": {
