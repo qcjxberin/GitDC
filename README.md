@@ -7,7 +7,9 @@ GitDC是基于.Net Core 2.2的Git Server服务端程序。
 
 QQ群：774046050
 
-演示地址：https://gitee.com/xingchensoft/GitDC  账号：admin   密码： admin
+下载之后运行dotnet watch run可直接本地运行。数据库为mysql
+
+运行之后的演示地址：http://localhost:7070  账号：admin   密码： admin
 
 ![注册](https://images.gitee.com/uploads/images/2019/0815/212129_dfe17ade_130171.png "5972F9CE-38AE-45f7-B84B-0F852FECCD61.png")
 ![登录](https://images.gitee.com/uploads/images/2019/0815/212158_13664b4e_130171.png "259BE4A4-4BB4-47ab-82E0-28675B4C3E30.png")
